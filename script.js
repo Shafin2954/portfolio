@@ -1,54 +1,92 @@
-// script.js
-
 // Matrix rain effect
 const canvas = document.getElementById('matrix-canvas');
 const ctx = canvas.getContext('2d');
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-window.addEventListener('resize', resizeCanvas);
-resizeCanvas();
+let w = (canvas.width = window.innerWidth);
+let h = (canvas.height = window.innerHeight);
 
-const cols = Math.floor(canvas.width / 20);
-const drops = Array(cols).fill(1);
+// Change to 0,1 and A–Z
+const matrixChars = '01ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
+const fontSize = 16;
+const columns = Math.floor(w / fontSize);
+const drops = Array(columns).fill(0);
 
 function drawMatrix() {
   ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-  ctx.fillRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = '#0F0';
-  ctx.font = '16px monospace';
-  for (let i = 0; i < drops.length; i++) {
-    const text = String.fromCharCode(0x30A0 + Math.random() * 96);
-    ctx.fillText(text, i * 20, drops[i] * 20);
-    if (drops[i] * 20 > canvas.height || Math.random() > 0.975) drops[i] = 0;
-    drops[i]++;
-  }
+  ctx.fillRect(0, 0, w, h);
+
+  ctx.fillStyle = '#0f0';
+  ctx.font = `${fontSize}px monospace`;
+
+  drops.forEach((y, i) => {
+    const x = i * fontSize;
+    const text = matrixChars[Math.floor(Math.random() * matrixChars.length)];
+    ctx.fillText(text, x, y * fontSize);
+    if (y * fontSize > h && Math.random() > 0.975) {
+      drops[i] = 0;
+    } else {
+      drops[i]++;
+    }
+  });
 }
+
 setInterval(drawMatrix, 50);
+window.addEventListener('resize', () => {
+  w = canvas.width = window.innerWidth;
+  h = canvas.height = window.innerHeight;
+});
 
-// Initialize xterm.js
-const term = new Terminal({ cursorBlink: true });
-term.open(document.getElementById('terminal'));
-term.write('Welcome to my Matrix Terminal Portfolio\r\n');
-term.write('Type / for help.\r\n\r\n');
+// Terminal (xterm.js) setup
+const { Terminal } = window;
+const term = new Terminal({
+  cursorBlink: true,
+  theme: {
+    background: 'transparent',
+    foreground: '#DDD',    // light gray main text
+    cursor:     '#0f0'     // keep the green cursor
+  },
+});
+term.open(document.getElementById('terminal-container'));
 
-// Simple prompt
-const prompt = () => {
-  term.write('\r\n> ');
+// Simple file-structure state
+let cwd = '/';
+const updateCwdDisplay = () => {
+  document.getElementById('cwd-display').textContent = cwd;
 };
+updateCwdDisplay();
+
+// Basic prompt
+const prompt = () => {
+  term.write(
+    `\r\n` +
+    `\x1b[36muser@matrix\x1b[0m` +  // cyan username
+    `:` +
+    `\x1b[33m${cwd}\x1b[0m` +       // yellow cwd
+    `$ `
+  );
+};
+
 prompt();
 
-// Handle user input
+// Handle input
 term.onKey(e => {
-  const char = e.key;
-  if (char === '\r') {
-    // Execute command (stub)
+  const ev = e.domEvent;
+  const printable = !ev.altKey && !ev.ctrlKey && !ev.metaKey;
+  if (ev.key === 'Enter') {
+    // For now, just re-prompt
     prompt();
-  } else if (char === '\u007f') {
-    // Backspace
+  } else if (ev.key === 'Backspace') {
     term.write('\b \b');
-  } else {
-    term.write(char);
+  } else if (printable) {
+    term.write(e.key);
   }
+});
+
+// Sidebar navigation (stub; clicking just changes cwd)
+document.querySelectorAll('.sidebar-icon').forEach(el => {
+  el.addEventListener('click', () => {
+    cwd = el.getAttribute('data-path');
+    updateCwdDisplay();
+    term.write(`\r\nChanged directory to ${cwd}`);
+    prompt();
+  });
 });

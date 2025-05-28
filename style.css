@@ -1,0 +1,147 @@
+/* reset & full-screen */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+    font-family: monospace;
+}
+
+/* Matrix canvas sits behind everything */
+#matrix-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+}
+
+/* Overlay holds sidebar + terminal */
+#overlay {
+    position: relative;
+    display: flex;
+    height: 100%;
+    z-index: 1;
+}
+
+/* Sidebar (20%) */
+#sidebar {
+    width: 20%;
+    padding: 1rem;
+    background: rgba(0, 0, 0, 0.6);
+    color: #0f0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+}
+
+/* Show CWD at top */
+#cwd-display {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px solid #0f0;
+    padding-bottom: 0.5rem;
+}
+
+/* Folder icon + label */
+.sidebar-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+}
+
+.sidebar-icon img {
+    width: 48px;
+    height: 48px;
+}
+
+.sidebar-icon span {
+    margin-top: 0.25rem;
+    font-size: 0.85rem;
+}
+
+/* Terminal pane (80%) */
+#terminal-container {
+    position: relative;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* xterm.js container */
+#term {
+    flex: 1;
+    /* Transparent to show Matrix behind */
+    background: transparent !important;
+}
+
+/* Help bar at bottom */
+#help-bar {
+    height: 60px;
+    padding: 0.5rem 1rem;
+    background: rgba(0, 0, 0, 0.7);
+    color: #0f0;
+    border-top: 1px solid #0f0;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+}
+
+#help-bar .key {
+    background: rgba(0, 255, 0, 0.2);
+    padding: 0 0.3rem;
+    border-radius: 3px;
+}
+
+/** Make all xterm layers transparent **/
+.xterm,
+.xterm-viewport,
+.xterm-screen,
+.xterm-rows,
+.xterm-rows>div,
+.xterm-rows>div>span {
+    background-color: transparent !important;
+}
+
+/** Scrollbar styling for the terminal pane **/
+#term::-webkit-scrollbar {
+    width: 8px;
+}
+
+#term::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+#term::-webkit-scrollbar-thumb {
+    background-color: #0f0;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+/* Firefox scrollbar support */
+#term {
+    scrollbar-width: thin;
+    scrollbar-color: #0f0 rgba(0, 0, 0, 0.3);
+}
+
+/* Make the term container fill height */
+#term {
+    flex: 1;
+    height: 100% !important;
+}
+
+/* Force xterm’s viewport to also fill */
+.xterm,
+.xterm-viewport {
+    height: 100% !important;
+}
