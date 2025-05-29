@@ -5,50 +5,55 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Matrix-Style Terminal Portfolio</title>
 
-  <!-- xterm.css from CDN -->
+  <!-- xterm.css -->
   <link
     rel="stylesheet"
     href="https://cdn.jsdelivr.net/npm/xterm@5.1.0/css/xterm.css"
   />
 
-  <!-- Your styles -->
+  <!-- Custom styles -->
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <!-- Matrix rain background -->
+  <!-- Matrix rain -->
   <canvas id="matrix-canvas"></canvas>
 
-  <!-- Two-column overlay -->
+  <!-- Overlay: sidebar + terminal -->
   <div id="overlay">
     <!-- Sidebar -->
     <aside id="sidebar">
       <div id="cwd-display">/</div>
-      <div class="sidebar-icon" data-path="/about_me">
-        <img src="assets/folder-green.svg" alt="About Me" />
-        <span>About Me</span>
+      <div class="folder-grid">
+        <div class="sidebar-icon" data-path="/about_me">
+          <img src="assets/folder-green.svg" alt="About Me" />
+          <span>About Me</span>
+        </div>
+        <div class="sidebar-icon" data-path="/skills">
+          <img src="assets/folder-green.svg" alt="Skills" />
+          <span>Skills</span>
+        </div>
+        <div class="sidebar-icon" data-path="/projects">
+          <img src="assets/folder-green.svg" alt="Projects" />
+          <span>Projects</span>
+        </div>
+        <div class="sidebar-icon" data-path="/contact_me">
+          <img src="assets/folder-green.svg" alt="Contact Me" />
+          <span>Contact Me</span>
+        </div>
+        <div class="sidebar-icon" data-path="/extras">
+          <img src="assets/folder-green.svg" alt="Extras" />
+          <span>Extras</span>
+        </div>
       </div>
-      <div class="sidebar-icon" data-path="/skills">
-        <img src="assets/folder-green.svg" alt="Skills" />
-        <span>Skills</span>
-      </div>
-      <div class="sidebar-icon" data-path="/projects">
-        <img src="assets/folder-green.svg" alt="Projects" />
-        <span>Projects</span>
-      </div>
-      <div class="sidebar-icon" data-path="/contact_me">
-        <img src="assets/folder-green.svg" alt="Contact Me" />
-        <span>Contact Me</span>
-      </div>
-      <div class="sidebar-icon" data-path="/extras">
-        <img src="assets/folder-green.svg" alt="Extras" />
-        <span>Extras</span>
+      <!-- ONLY one help panel, at the bottom of the sidebar -->
+      <div class="help-panel">
+        Press <span class="key">/</span> for commands
       </div>
     </aside>
 
     <!-- Terminal pane -->
     <section id="terminal-container">
       <div id="term"></div>
-      <div id="help-bar">Press <span class="key">/</span> for commands</div>
     </section>
   </div>
 
