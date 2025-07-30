@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Development - Shafin's Portfolio</title>
+    <link rel="stylesheet" href="../style.css">
+    <style>
+        .domain-header {
+            padding: 120px 0 60px;
+            background: linear-gradient(rgba(38, 70, 83, 0.9), rgba(42, 157, 143, 0.9));
+            color: var(--white);
+            text-align: center;
+        }
+
+        .domain-content {
+            padding: 4rem 0;
+        }
+
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .project-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-info h3 {
+            margin-bottom: 1rem;
+            color: var(--secondary-color);
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tech-tag {
+            background: var(--background-color);
+            padding: 0.25rem 0.75rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+            color: var(--primary-color);
+        }
+
+        .back-link {
+            display: inline-block;
+            margin: 2rem 0;
+            color: var(--primary-color);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .back-link:hover {
+            color: var(--secondary-color);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="nav-brand">Shafin</div>
+            <ul>
+                <li><a href="../index.html">Home</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="domain-header">
+        <div class="container">
+            <h1>Web Development</h1>
+            <p>Creating modern and responsive web applications</p>
+        </div>
+    </section>
+
+    <section class="domain-content">
+        <div class="container">
+            <h2>About This Domain</h2>
+            <p>As a web developer, I specialize in creating responsive, user-friendly websites and web applications. My expertise includes front-end and back-end development, with a focus on modern technologies and best practices.</p>
+
+            <h2 class="mt-5">Featured Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <img src="../assets/folder-green.svg" alt="Project 1">
+                    <div class="project-info">
+                        <h3>Project Name 1</h3>
+                        <p>Description of the project and its key features. Explain what problems it solves and what makes it unique.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">React</span>
+                            <span class="tech-tag">Node.js</span>
+                            <span class="tech-tag">MongoDB</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <img src="../assets/folder-green.svg" alt="Project 2">
+                    <div class="project-info">
+                        <h3>Project Name 2</h3>
+                        <p>Description of the project and its key features. Explain what problems it solves and what makes it unique.</p>
+                        <div class="tech-stack">
+                            <span class="tech-tag">Vue.js</span>
+                            <span class="tech-tag">Express</span>
+                            <span class="tech-tag">PostgreSQL</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <a href="../index.html" class="back-link">← Back to Domains</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Shafin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html>

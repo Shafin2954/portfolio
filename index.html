@@ -1,65 +1,179 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Matrix-Style Terminal Portfolio</title>
-
-  <!-- xterm.css -->
-  <link
-    rel="stylesheet"
-    href="https://cdn.jsdelivr.net/npm/xterm@5.1.0/css/xterm.css"
-  />
-
-  <!-- Custom styles -->
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shafin's Portfolio - Multi-Domain Expert</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Matrix rain -->
-  <canvas id="matrix-canvas"></canvas>
+    <header>
+        <nav>
+            <div class="nav-brand">Shafin</div>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#domains">Domains</a></li>
+                <li><a href="#interests">Interests</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <!-- Overlay: sidebar + terminal -->
-  <div id="overlay">
-    <!-- Sidebar -->
-    <aside id="sidebar">
-      <div id="cwd-display">/</div>
-      <div class="folder-grid">
-        <div class="sidebar-icon" data-path="/about_me">
-          <img src="assets/folder-green.svg" alt="About Me" />
-          <span>About Me</span>
+    <section id="home" class="hero">
+        <div class="container">
+            <h1>Welcome to My Multi-Domain Portfolio</h1>
+            <p>Exploring Excellence Across Different Fields</p>
         </div>
-        <div class="sidebar-icon" data-path="/skills">
-          <img src="assets/folder-green.svg" alt="Skills" />
-          <span>Skills</span>
-        </div>
-        <div class="sidebar-icon" data-path="/projects">
-          <img src="assets/folder-green.svg" alt="Projects" />
-          <span>Projects</span>
-        </div>
-        <div class="sidebar-icon" data-path="/contact_me">
-          <img src="assets/folder-green.svg" alt="Contact Me" />
-          <span>Contact Me</span>
-        </div>
-        <div class="sidebar-icon" data-path="/extras">
-          <img src="assets/folder-green.svg" alt="Extras" />
-          <span>Extras</span>
-        </div>
-      </div>
-      <!-- ONLY one help panel, at the bottom of the sidebar -->
-      <div class="help-panel">
-        Press <span class="key">/</span> for commands
-      </div>
-    </aside>
-
-    <!-- Terminal pane -->
-    <section id="terminal-container">
-      <div id="term"></div>
     </section>
-  </div>
 
-  <!-- xterm.js -->
-  <script src="https://cdn.jsdelivr.net/npm/xterm@5.1.0/lib/xterm.js"></script>
-  <!-- Your logic -->
-  <script src="script.js"></script>
+    <section id="domains" class="domains">
+        <div class="container">
+            <h2>Domain <span class="highlight">Expertise</span></h2>
+            <p class="domain-intro">Discover my diverse range of knowledge domains and expertise areas</p>
+            
+            <div class="domain-grid">
+                <div class="domain-card">
+                    <img src="assets/icons/web-dev.svg" alt="Web Development">
+                    <h3>Web Development</h3>
+                    <p>Creating modern web applications</p>
+                    <a href="domains/web-development.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/data.svg" alt="Data Analysis">
+                    <h3>Data Analysis</h3>
+                    <p>Transforming data into insights</p>
+                    <a href="domains/data-analysis.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/ai.svg" alt="AI Development">
+                    <h3>AI Development</h3>
+                    <p>Building intelligent solutions</p>
+                    <a href="domains/ai-development.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/game.svg" alt="Game Development">
+                    <h3>2D Game Development</h3>
+                    <p>Creating interactive gaming experiences</p>
+                    <a href="domains/game.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/app-dev.svg" alt="App Development">
+                    <h3>App Development</h3>
+                    <p>Cross-platform Flutter applications</p>
+                    <a href="domains/app-development.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/database.svg" alt="Database">
+                    <h3>Database Management</h3>
+                    <p>MySQL solutions and optimization</p>
+                    <a href="domains/database.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/robotics.svg" alt="Robotics">
+                    <h3>Robotics</h3>
+                    <p>Arduino-based automation projects</p>
+                    <a href="domains/robotics.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/academic.svg" alt="Academic Excellence">
+                    <h3>Academic Journey</h3>
+                    <p>Educational achievements and milestones</p>
+                    <a href="domains/academic.html" class="btn">Learn More</a>
+                </div>
+
+                <div class="domain-card">
+                    <img src="assets/icons/blender.svg" alt="3D Modeling">
+                    <h3>3D Modeling</h3>
+                    <p>Blender creations and designs</p>
+                    <a href="domains/3d-modeling.html" class="btn">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="interests" class="interests">
+        <div class="container">
+            <h2>Things I <span class="highlight">Love</span></h2>
+            <p class="interests-intro">Exploring my passions and hobbies beyond professional domains</p>
+            
+            <div class="interests-grid">
+                <div class="interest-card">
+                    <img src="assets/icons/chess.svg" alt="Chess">
+                    <h3>Chess</h3>
+                    <p>Strategic gameplay and tactical analysis</p>
+                    <a href="interests/chess.html" class="btn">Explore More</a>
+                </div>
+
+                <div class="interest-card">
+                    <img src="assets/icons/violin.svg" alt="Violin">
+                    <h3>Violin</h3>
+                    <p>Classical music and performance</p>
+                    <a href="interests/violin.html" class="btn">Explore More</a>
+                </div>
+
+                <div class="interest-card">
+                    <img src="assets/icons/origami.svg" alt="Origami">
+                    <h3>Origami</h3>
+                    <p>Paper crafting and Japanese art</p>
+                    <a href="interests/origami.html" class="btn">Explore More</a>
+                </div>
+
+                <div class="interest-card">
+                    <img src="assets/icons/books.svg" alt="Books">
+                    <h3>Books</h3>
+                    <p>Literature and continuous learning</p>
+                    <a href="interests/books.html" class="btn">Explore More</a>
+                </div>
+
+                <div class="interest-card">
+                    <img src="assets/icons/anime.svg" alt="Anime">
+                    <h3>Anime</h3>
+                    <p>Japanese animation and storytelling</p>
+                    <a href="interests/anime.html" class="btn">Explore More</a>
+                </div>
+
+                <div class="interest-card">
+                    <img src="assets/icons/music.svg" alt="Music">
+                    <h3>Music</h3>
+                    <p>I love soundtracks</p>
+                    <a href="interests/anime.html" class="btn">Explore More</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <p>A passionate individual with expertise across multiple domains, constantly exploring and mastering new fields.</p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact">
+        <div class="container">
+            <h2>Get in Touch</h2>
+            <div class="contact-info">
+                <a href="mailto:your.email@example.com" class="contact-link">Email</a>
+                <a href="https://github.com/Shafin2954" class="contact-link">GitHub</a>
+                <a href="https://linkedin.com/in/yourprofile" class="contact-link">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Shafin. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
 </body>
 </html>
