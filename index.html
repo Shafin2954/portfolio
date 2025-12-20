@@ -1,179 +1,296 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shafin's Portfolio - Multi-Domain Expert</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Shafin Ahmed</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
-    <header>
-        <nav>
-            <div class="nav-brand">Shafin</div>
-            <ul>
-                <li><a href="#home">Home</a></li>
-                <li><a href="#domains">Domains</a></li>
-                <li><a href="#interests">Interests</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
+    <div class="ambient-background">
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
 
-    <section id="home" class="hero">
-        <div class="container">
-            <h1>Welcome to My Multi-Domain Portfolio</h1>
-            <p>Exploring Excellence Across Different Fields</p>
+    <button class="hamburger-btn" aria-label="Toggle Menu">
+        <div class="bar"></div>
+        <div class="bar"></div>
+        <div class="bar"></div>
+    </button>
+
+    <div class="breadcrumb-header">
+        <span class="path-text">~/</span>
+    </div>
+
+    <div class="main-container">
+        <div class="vertical-menu">
+            <div class="menu-numbers"></div>
         </div>
-    </section>
+        <div class="scroll-container">
+            <!-- Welcome Section -->
+            <div class="section" data-index="0">
+                <div class="welcome-layout">
 
-    <section id="domains" class="domains">
-        <div class="container">
-            <h2>Domain <span class="highlight">Expertise</span></h2>
-            <p class="domain-intro">Discover my diverse range of knowledge domains and expertise areas</p>
-            
-            <div class="domain-grid">
-                <div class="domain-card">
-                    <img src="assets/icons/web-dev.svg" alt="Web Development">
-                    <h3>Web Development</h3>
-                    <p>Creating modern web applications</p>
-                    <a href="domains/web-development.html" class="btn">Learn More</a>
+                    <div class="welcome-top-row">
+                        <div class="hero-image-wrapper">
+                            <img class="hero-flat-image" src="assets/self.png" alt="Shafin Ahmed">
+                        </div>
+                        <div class="welcome-header">
+                            <h2><span class="highlight">Shafin Ahmed</span></h2>
+                            <h3>Developer · Engineer · Designer</h3>
+                        </div>
+
+
+                    </div>
+
+                    <div class="intro-card-full">
+                        <p>
+                            Working across software engineering, data, and creative systems,
+                            connecting technical depth with cross-domain thinking.
+                        </p>
+                        <p class="sub-text">Navigate the home directory to explore my work</p>
+                    </div>
+
                 </div>
+            </div>
 
-                <div class="domain-card">
-                    <img src="assets/icons/data.svg" alt="Data Analysis">
-                    <h3>Data Analysis</h3>
-                    <p>Transforming data into insights</p>
-                    <a href="domains/data-analysis.html" class="btn">Learn More</a>
+            <!-- Works Section (parent) -->
+            <div class="section parent-section" data-index="1">
+                <!-- Empty: submenu lives in the tree -->
+            </div>
+
+            <!-- Works / Apps -->
+            <div class="section services-section" data-index="2">
+                <div class="services-container">
+                    <div class="services-track">
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Works/Apps/ai-assistant</p>
+                                    <h3>Offline AI Assistant</h3>
+                                    <p>Privacy-first AI assistant that runs fully offline with a terminal-inspired
+                                        interface. Uses local language models for fast, secure interactions without cloud
+                                        dependency.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Offline AI Assistant placeholder">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Works/Apps/parade-state</p>
+                                    <h3>Flask Parade State Manager</h3>
+                                    <p>Real-time personnel tracking system deployed at college to manage attendance and
+                                        location data. Flask + SQLite with role-based access control to streamline
+                                        administrative workflows.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Parade State Manager placeholder">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="domain-card">
-                    <img src="assets/icons/ai.svg" alt="AI Development">
-                    <h3>AI Development</h3>
-                    <p>Building intelligent solutions</p>
-                    <a href="domains/ai-development.html" class="btn">Learn More</a>
+            <!-- Works / Data Science -->
+            <div class="section services-section" data-index="3">
+                <div class="services-container">
+                    <div class="services-track">
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Works/Data_Science/agriculture-forecast</p>
+                                    <h3>Agricultural Yield Forecasting Model</h3>
+                                    <p>Machine learning model predicting next-year crop yields using a decade of
+                                        historical data. Built with time-series analysis, regression, and thorough
+                                        validation on real-world datasets.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Agriculture Forecast placeholder">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Works/Data_Science/kaggle-winner</p>
+                                    <h3>🏆 Department Kaggle Competition - 1st Place</h3>
+                                    <p>Top-ranked solution using feature engineering and ensemble modeling. Tuned
+                                        hyperparameters and domain-driven insights to deliver best-in-class classification
+                                        performance.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Kaggle Winner placeholder">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="domain-card">
-                    <img src="assets/icons/game.svg" alt="Game Development">
-                    <h3>2D Game Development</h3>
-                    <p>Creating interactive gaming experiences</p>
-                    <a href="domains/game.html" class="btn">Learn More</a>
+            <!-- Works / Creative -->
+            <div class="section services-section" data-index="4">
+                <div class="services-container">
+                    <div class="services-track">
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Works/Creative/ambigrams</p>
+                                    <h3>Ambigram Design Portfolio</h3>
+                                    <p>Collection of custom ambigrams inspired by Angels &amp; Demons. Symmetrical
+                                        typographic art that reads identically when rotated 180°, balancing geometry and
+                                        negative space.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Ambigram Design placeholder">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="domain-card">
-                    <img src="assets/icons/app-dev.svg" alt="App Development">
-                    <h3>App Development</h3>
-                    <p>Cross-platform Flutter applications</p>
-                    <a href="domains/app-development.html" class="btn">Learn More</a>
+            <!-- Interests Section (flattened) -->
+            <div class="section services-section" data-index="5">
+                <div class="services-container">
+                    <div class="services-track">
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Interests/books</p>
+                                    <h3>Reading List</h3>
+                                    <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon. Currently
+                                        studying O'Reilly's PyTorch deep learning textbook to deepen ML foundations.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Reading list placeholder">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Interests/cubing</p>
+                                    <h3>Speedcubing &amp; Puzzle Collection</h3>
+                                    <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1, Megaminx,
+                                        Pyraminx and more. Follows global cubing community for algorithm optimization.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Speedcubing placeholder">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="service-card">
+                            <div class="card-content">
+                                <div class="text-content">
+                                    <p class="card-path">~/Interests/music</p>
+                                    <h3>Music &amp; Creative Pursuits</h3>
+                                    <p>Violin player exploring varied repertoire; enjoys chess for strategy, origami for
+                                        precision (incl. Satoshi Kamiya models), and Photoshop for digital creativity.</p>
+                                </div>
+                                <div class="image-content">
+                                    <img src="assets/icons/web.svg" alt="Music and creative pursuits placeholder">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="domain-card">
-                    <img src="assets/icons/database.svg" alt="Database">
-                    <h3>Database Management</h3>
-                    <p>MySQL solutions and optimization</p>
-                    <a href="domains/database.html" class="btn">Learn More</a>
+            <!-- About Section (Empty - serves as container for submenus) -->
+            <div class="section parent-section" data-index="6">
+                <!-- Empty section, submenus will appear in the menu -->
+            </div>
+
+            <!-- Background Section (Timeline) -->
+            <div class="section timeline-section" data-index="7">
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-node">
+                            <div class="node-icon school">
+                                <img src="assets/icons/school.svg" alt="School">
+                            </div>
+                            <div class="node-year">2014</div>
+                            <div class="node-dot"></div>
+                            <div class="node-content">
+                                <h3>High School</h3>
+                                <p>Started Computer Science journey with programming basics</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node">
+                            <div class="node-icon university">
+                                <img src="assets/icons/university.svg" alt="University">
+                            </div>
+                            <div class="node-year">2016</div>
+                            <div class="node-dot"></div>
+                            <div class="node-content">
+                                <h3>University</h3>
+                                <p>Bachelor's in Computer Science & Engineering</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node">
+                            <div class="node-icon company">
+                                <img src="assets/icons/startup.svg" alt="Startup">
+                            </div>
+                            <div class="node-year">2019</div>
+                            <div class="node-dot"></div>
+                            <div class="node-content">
+                                <h3>First Startup</h3>
+                                <p>Started as Junior Developer at Tech Startup</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node">
+                            <div class="node-icon company">
+                                <img src="assets/icons/corporate.svg" alt="Corporate">
+                            </div>
+                            <div class="node-year">2021</div>
+                            <div class="node-dot"></div>
+                            <div class="node-content">
+                                <h3>Senior Developer</h3>
+                                <p>Lead Developer at Enterprise Software Company</p>
+                            </div>
+                        </div>
+
+                        <div class="timeline-node">
+                            <div class="node-icon freelance">
+                                <img src="assets/icons/freelance.svg" alt="Freelance">
+                            </div>
+                            <div class="node-year">2025</div>
+                            <div class="node-dot"></div>
+                            <div class="node-content">
+                                <h3>Independent Developer</h3>
+                                <p>Freelance Full-stack Developer & Consultant</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+            </div>
 
-                <div class="domain-card">
-                    <img src="assets/icons/robotics.svg" alt="Robotics">
-                    <h3>Robotics</h3>
-                    <p>Arduino-based automation projects</p>
-                    <a href="domains/robotics.html" class="btn">Learn More</a>
-                </div>
-
-                <div class="domain-card">
-                    <img src="assets/icons/academic.svg" alt="Academic Excellence">
-                    <h3>Academic Journey</h3>
-                    <p>Educational achievements and milestones</p>
-                    <a href="domains/academic.html" class="btn">Learn More</a>
-                </div>
-
-                <div class="domain-card">
-                    <img src="assets/icons/blender.svg" alt="3D Modeling">
-                    <h3>3D Modeling</h3>
-                    <p>Blender creations and designs</p>
-                    <a href="domains/3d-modeling.html" class="btn">Learn More</a>
+            <!-- Contact Section -->
+            <div class="section" data-index="8">
+                <div class="content-card">
+                    <h2>Contact</h2>
+                    <p>Let's work together! Reach out via email or connect with me on social media platforms. I'm always
+                        interested in discussing new projects and opportunities.</p>
                 </div>
             </div>
         </div>
-    </section>
-
-    <section id="interests" class="interests">
-        <div class="container">
-            <h2>Things I <span class="highlight">Love</span></h2>
-            <p class="interests-intro">Exploring my passions and hobbies beyond professional domains</p>
-            
-            <div class="interests-grid">
-                <div class="interest-card">
-                    <img src="assets/icons/chess.svg" alt="Chess">
-                    <h3>Chess</h3>
-                    <p>Strategic gameplay and tactical analysis</p>
-                    <a href="interests/chess.html" class="btn">Explore More</a>
-                </div>
-
-                <div class="interest-card">
-                    <img src="assets/icons/violin.svg" alt="Violin">
-                    <h3>Violin</h3>
-                    <p>Classical music and performance</p>
-                    <a href="interests/violin.html" class="btn">Explore More</a>
-                </div>
-
-                <div class="interest-card">
-                    <img src="assets/icons/origami.svg" alt="Origami">
-                    <h3>Origami</h3>
-                    <p>Paper crafting and Japanese art</p>
-                    <a href="interests/origami.html" class="btn">Explore More</a>
-                </div>
-
-                <div class="interest-card">
-                    <img src="assets/icons/books.svg" alt="Books">
-                    <h3>Books</h3>
-                    <p>Literature and continuous learning</p>
-                    <a href="interests/books.html" class="btn">Explore More</a>
-                </div>
-
-                <div class="interest-card">
-                    <img src="assets/icons/anime.svg" alt="Anime">
-                    <h3>Anime</h3>
-                    <p>Japanese animation and storytelling</p>
-                    <a href="interests/anime.html" class="btn">Explore More</a>
-                </div>
-
-                <div class="interest-card">
-                    <img src="assets/icons/music.svg" alt="Music">
-                    <h3>Music</h3>
-                    <p>I love soundtracks</p>
-                    <a href="interests/anime.html" class="btn">Explore More</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="about" class="about">
-        <div class="container">
-            <h2>About Me</h2>
-            <p>A passionate individual with expertise across multiple domains, constantly exploring and mastering new fields.</p>
-        </div>
-    </section>
-
-    <section id="contact" class="contact">
-        <div class="container">
-            <h2>Get in Touch</h2>
-            <div class="contact-info">
-                <a href="mailto:your.email@example.com" class="contact-link">Email</a>
-                <a href="https://github.com/Shafin2954" class="contact-link">GitHub</a>
-                <a href="https://linkedin.com/in/yourprofile" class="contact-link">LinkedIn</a>
-            </div>
-        </div>
-    </section>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Shafin. All rights reserved.</p>
-        </div>
-    </footer>
+    </div>
 
     <script src="script.js"></script>
 </body>
+
 </html>
