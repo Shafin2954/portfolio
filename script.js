@@ -6,17 +6,15 @@ const sections = document.querySelectorAll('.section');
 const menuNumbers = document.querySelector('.menu-numbers');
 
 // --- Define Section Colors ---
-// Using specific Hex codes for a curated look
+// Using specific Hex codes for a curated look, now including RGB for shadows
+// Re-indexed after removing sections 2, 3, 4
 const sectionColors = {
-    default: '#003f97ff', // Welcome
-    1: '#3b82f6',        // Works (parent)
-    2: '#0ea5e9',        // Apps
-    3: '#8b5cf6',        // Data Science
-    4: '#ec4899',        // Creative
-    5: '#f59e0b',        // Interests
-    6: '#06b6d4',        // About
-    7: '#0ea5e9',        // Background
-    8: '#6366f1'         // Contact
+    default: {hex: '#003f97ff', rgb: '0,63,151'}, // Welcome (0)
+    1: {hex: '#3b82f6', rgb: '59,130,246'},        // Works (1) - now combines Apps, Data Science, Creative
+    2: {hex: '#f59e0b', rgb: '245,158,11'},        // Interests (formerly 5)
+    3: {hex: '#06b6d4', rgb: '6,182,212'},        // About (formerly 6)
+    4: {hex: '#0ea5e9', rgb: '14,165,233'},        // Background (formerly 7)
+    5: {hex: '#6366f1', rgb: '99,102,241'}         // Contact (formerly 8)
 };
 
 
@@ -885,12 +883,6 @@ scrollContainer.addEventListener('wheel', (e) => {
     }, 250);
 }, { passive: true });
 
-// Clean up on page unload
-window.addEventListener('beforeunload', () => {
-    if (rafId) {
-        cancelAnimationFrame(rafId);
-    }
-});
 
 // Typing Animation for Hero
 const titles = ['Developer', 'Engineer', 'Designer'];

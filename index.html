@@ -93,100 +93,125 @@
                 </div>
             </div>
 
-            <!-- Works Section (parent) -->
-            <div class="section parent-section" data-index="1">
-                <!-- Empty: submenu lives in the tree -->
-            </div>
+            <!-- Works Section (New combined horizontal scroll) -->
+            <div class="section works-section" data-index="1">
+                <div class="works-track">
+                    <!-- Works / Apps -->
+                    <div class="works-panel" id="apps-panel" data-label="Apps">
+                        <div class="services-container">
+                            <div class="services-track"> <!-- Keep services-track for individual card animations -->
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Works/Apps/ai-assistant</p>
+                                            <h3>Offline AI Assistant</h3>
+                                            <p>Privacy-first AI assistant that runs fully offline with a terminal-inspired
+                                                interface. Uses local language models for fast, secure interactions without cloud
+                                                dependency.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Python</span>
+                                                <span class="tag">LLM</span>
+                                                <span class="tag">Offline</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/ai.svg" alt="Offline AI Assistant icon">
+                                        </div>
+                                    </div>
+                                </div>
 
-            <!-- Works / Apps -->
-            <div class="section services-section" data-index="2">
-                <div class="services-container">
-                    <div class="services-track">
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Works/Apps/ai-assistant</p>
-                                    <h3>Offline AI Assistant</h3>
-                                    <p>Privacy-first AI assistant that runs fully offline with a terminal-inspired
-                                        interface. Uses local language models for fast, secure interactions without cloud
-                                        dependency.</p>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Offline AI Assistant placeholder">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Works/Apps/parade-state</p>
-                                    <h3>Flask Parade State Manager</h3>
-                                    <p>Real-time personnel tracking system deployed at college to manage attendance and
-                                        location data. Flask + SQLite with role-based access control to streamline
-                                        administrative workflows.</p>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Parade State Manager placeholder">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Works / Data Science -->
-            <div class="section services-section" data-index="3">
-                <div class="services-container">
-                    <div class="services-track">
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Works/Data_Science/agriculture-forecast</p>
-                                    <h3>Agricultural Yield Forecasting Model</h3>
-                                    <p>Machine learning model predicting next-year crop yields using a decade of
-                                        historical data. Built with time-series analysis, regression, and thorough
-                                        validation on real-world datasets.</p>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Agriculture Forecast placeholder">
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Works/Data_Science/kaggle-winner</p>
-                                    <h3>🏆 Department Kaggle Competition - 1st Place</h3>
-                                    <p>Top-ranked solution using feature engineering and ensemble modeling. Tuned
-                                        hyperparameters and domain-driven insights to deliver best-in-class classification
-                                        performance.</p>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Kaggle Winner placeholder">
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Works/Apps/parade-state</p>
+                                            <h3>Flask Parade State Manager</h3>
+                                            <p>Real-time personnel tracking system deployed at college to manage attendance and
+                                                location data. Flask + SQLite with role-based access control to streamline
+                                                administrative workflows.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Python</span>
+                                                <span class="tag">Flask</span>
+                                                <span class="tag">SQLite</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/app-dev.svg" alt="Parade State Manager icon">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
 
-            <!-- Works / Creative -->
-            <div class="section services-section" data-index="4">
-                <div class="services-container">
-                    <div class="services-track">
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Works/Creative/ambigrams</p>
-                                    <h3>Ambigram Design Portfolio</h3>
-                                    <p>Collection of custom ambigrams inspired by Angels &amp; Demons. Symmetrical
-                                        typographic art that reads identically when rotated 180°, balancing geometry and
-                                        negative space.</p>
+                    <!-- Works / Data Science -->
+                    <div class="works-panel" id="data-science-panel" data-label="Data_Science">
+                        <div class="services-container">
+                            <div class="services-track">
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Works/Data_Science/agriculture-forecast</p>
+                                            <h3>Agricultural Yield Forecasting Model</h3>
+                                            <p>Machine learning model predicting next-year crop yields using a decade of
+                                                historical data. Built with time-series analysis, regression, and thorough
+                                                validation on real-world datasets.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Python</span>
+                                                <span class="tag">Pandas</span>
+                                                <span class="tag">Scikit-learn</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/data.svg" alt="Agriculture Forecast icon">
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Ambigram Design placeholder">
+
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Works/Data_Science/kaggle-winner</p>
+                                            <h3>🏆 Department Kaggle Competition - 1st Place</h3>
+                                            <p>Top-ranked solution using feature engineering and ensemble modeling. Tuned
+                                                hyperparameters and domain-driven insights to deliver best-in-class classification
+                                                performance.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Python</span>
+                                                <span class="tag">XGBoost</span>
+                                                <span class="tag">Feature Engineering</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/data.svg" alt="Kaggle Winner icon">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Works / Creative -->
+                    <div class="works-panel" id="creative-panel" data-label="Creative">
+                        <div class="services-container">
+                            <div class="services-track">
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Works/Creative/ambigrams</p>
+                                            <h3>Ambigram Design Portfolio</h3>
+                                            <p>Collection of custom ambigrams inspired by Angels &amp; Demons. Symmetrical
+                                                typographic art that reads identically when rotated 180°, balancing geometry and
+                                                negative space.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Illustrator</span>
+                                                <span class="tag">Typography</span>
+                                                <span class="tag">Design</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/blender.svg" alt="Ambigram Design icon">
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -195,7 +220,7 @@
             </div>
 
             <!-- Interests Section (flattened) -->
-            <div class="section services-section" data-index="5">
+            <div class="section services-section" data-index="2">
                 <div class="services-container">
                     <div class="services-track">
                         <div class="service-card">
@@ -205,9 +230,14 @@
                                     <h3>Reading List</h3>
                                     <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon. Currently
                                         studying O'Reilly's PyTorch deep learning textbook to deepen ML foundations.</p>
+                                    <div class="tech-tags">
+                                        <span class="tag">Mystery</span>
+                                        <span class="tag">Thriller</span>
+                                        <span class="tag">Deep Learning</span>
+                                    </div>
                                 </div>
                                 <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Reading list placeholder">
+                                    <img src="assets/icons/books.svg" alt="Reading list icon">
                                 </div>
                             </div>
                         </div>
@@ -219,9 +249,14 @@
                                     <h3>Speedcubing &amp; Puzzle Collection</h3>
                                     <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1, Megaminx,
                                         Pyraminx and more. Follows global cubing community for algorithm optimization.</p>
+                                    <div class="tech-tags">
+                                        <span class="tag">Rubik's Cube</span>
+                                        <span class="tag">Algorithms</span>
+                                        <span class="tag">Puzzles</span>
+                                    </div>
                                 </div>
                                 <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Speedcubing placeholder">
+                                    <img src="assets/icons/game.svg" alt="Speedcubing icon">
                                 </div>
                             </div>
                         </div>
@@ -233,9 +268,15 @@
                                     <h3>Music &amp; Creative Pursuits</h3>
                                     <p>Violin player exploring varied repertoire; enjoys chess for strategy, origami for
                                         precision (incl. Satoshi Kamiya models), and Photoshop for digital creativity.</p>
+                                    <div class="tech-tags">
+                                        <span class="tag">Violin</span>
+                                        <span class="tag">Chess</span>
+                                        <span class="tag">Origami</span>
+                                        <span class="tag">Photoshop</span>
+                                    </div>
                                 </div>
                                 <div class="image-content">
-                                    <img src="assets/icons/web.svg" alt="Music and creative pursuits placeholder">
+                                    <img src="assets/icons/violin.svg" alt="Music and creative pursuits icon">
                                 </div>
                             </div>
                         </div>
@@ -244,17 +285,17 @@
             </div>
 
             <!-- About Section (Empty - serves as container for submenus) -->
-            <div class="section parent-section" data-index="6">
+            <div class="section parent-section" data-index="3">
                 <!-- Empty section, submenus will appear in the menu -->
             </div>
 
             <!-- Background Section (Timeline) -->
-            <div class="section timeline-section" data-index="7">
+            <div class="section timeline-section" data-index="4">
                 <div class="timeline-container">
                     <div class="timeline">
                         <div class="timeline-node">
                             <div class="node-icon school">
-                                <img src="assets/icons/school.svg" alt="School">
+                                <img src="assets/icons/academic.svg" alt="School">
                             </div>
                             <div class="node-year">2014</div>
                             <div class="node-dot"></div>
@@ -266,7 +307,7 @@
 
                         <div class="timeline-node">
                             <div class="node-icon university">
-                                <img src="assets/icons/university.svg" alt="University">
+                                <img src="assets/icons/academic.svg" alt="University">
                             </div>
                             <div class="node-year">2016</div>
                             <div class="node-dot"></div>
@@ -278,7 +319,7 @@
 
                         <div class="timeline-node">
                             <div class="node-icon company">
-                                <img src="assets/icons/startup.svg" alt="Startup">
+                                <img src="assets/icons/app-dev.svg" alt="Startup">
                             </div>
                             <div class="node-year">2019</div>
                             <div class="node-dot"></div>
@@ -290,7 +331,7 @@
 
                         <div class="timeline-node">
                             <div class="node-icon company">
-                                <img src="assets/icons/corporate.svg" alt="Corporate">
+                                <img src="assets/icons/app-dev.svg" alt="Corporate">
                             </div>
                             <div class="node-year">2021</div>
                             <div class="node-dot"></div>
@@ -302,7 +343,7 @@
 
                         <div class="timeline-node">
                             <div class="node-icon freelance">
-                                <img src="assets/icons/freelance.svg" alt="Freelance">
+                                <img src="assets/icons/app-dev.svg" alt="Freelance">
                             </div>
                             <div class="node-year">2025</div>
                             <div class="node-dot"></div>
@@ -316,7 +357,7 @@
             </div>
 
             <!-- Contact Section -->
-            <div class="section" data-index="8">
+            <div class="section" data-index="5">
                 <div class="content-card">
                     <h2>Contact</h2>
                     <p>Let's work together! Reach out via email or connect with me on social media platforms. I'm always
