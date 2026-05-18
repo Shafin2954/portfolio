@@ -93,11 +93,11 @@
                 </div>
             </div>
 
-            <!-- Works Section (New combined horizontal scroll) -->
-            <div class="section works-section" data-index="1">
-                <div class="works-track">
-                    <!-- Works / Apps -->
-                    <div class="works-panel" id="apps-panel" data-label="Apps">
+            <!-- Works Section (Horizontal Scroll Container) -->
+            <div class="section horizontal-section" data-index="1">
+                <div class="horizontal-track">
+                    <!-- Works / Apps Panel -->
+                    <div class="horizontal-panel" id="apps-panel" data-label="Apps">
                         <div class="services-container">
                             <div class="services-track"> <!-- Keep services-track for individual card animations -->
                                 <div class="service-card">
@@ -143,8 +143,8 @@
                         </div>
                     </div>
 
-                    <!-- Works / Data Science -->
-                    <div class="works-panel" id="data-science-panel" data-label="Data_Science">
+                    <!-- Works / Data Science Panel -->
+                    <div class="horizontal-panel" id="data-science-panel" data-label="Data_Science">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -190,8 +190,8 @@
                         </div>
                     </div>
 
-                    <!-- Works / Creative -->
-                    <div class="works-panel" id="creative-panel" data-label="Creative">
+                    <!-- Works / Creative Panel -->
+                    <div class="horizontal-panel" id="creative-panel" data-label="Creative">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -219,64 +219,83 @@
                 </div>
             </div>
 
-            <!-- Interests Section (flattened) -->
-            <div class="section services-section" data-index="2">
-                <div class="services-container">
-                    <div class="services-track">
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Interests/books</p>
-                                    <h3>Reading List</h3>
-                                    <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon. Currently
-                                        studying O'Reilly's PyTorch deep learning textbook to deepen ML foundations.</p>
-                                    <div class="tech-tags">
-                                        <span class="tag">Mystery</span>
-                                        <span class="tag">Thriller</span>
-                                        <span class="tag">Deep Learning</span>
+            <!-- Interests Section (Horizontal Scroll Container) -->
+            <div class="section horizontal-section" data-index="2">
+                <div class="horizontal-track">
+                    <!-- Interests / Books Panel -->
+                    <div class="horizontal-panel" id="books-panel" data-label="Books">
+                        <div class="services-container">
+                            <div class="services-track">
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Interests/books</p>
+                                            <h3>Reading List</h3>
+                                            <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon. Currently
+                                                studying O'Reilly's PyTorch deep learning textbook to deepen ML foundations.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Mystery</span>
+                                                <span class="tag">Thriller</span>
+                                                <span class="tag">Deep Learning</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/books.svg" alt="Reading list icon">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/books.svg" alt="Reading list icon">
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Interests/cubing</p>
-                                    <h3>Speedcubing &amp; Puzzle Collection</h3>
-                                    <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1, Megaminx,
-                                        Pyraminx and more. Follows global cubing community for algorithm optimization.</p>
-                                    <div class="tech-tags">
-                                        <span class="tag">Rubik's Cube</span>
-                                        <span class="tag">Algorithms</span>
-                                        <span class="tag">Puzzles</span>
+                    <!-- Interests / Cubing Panel -->
+                    <div class="horizontal-panel" id="cubing-panel" data-label="Cubing">
+                        <div class="services-container">
+                            <div class="services-track">
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Interests/cubing</p>
+                                            <h3>Speedcubing &amp; Puzzle Collection</h3>
+                                            <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1, Megaminx,
+                                                Pyraminx and more. Follows global cubing community for algorithm optimization.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Rubik's Cube</span>
+                                                <span class="tag">Algorithms</span>
+                                                <span class="tag">Puzzles</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/game.svg" alt="Speedcubing icon">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/game.svg" alt="Speedcubing icon">
                                 </div>
                             </div>
                         </div>
+                    </div>
 
-                        <div class="service-card">
-                            <div class="card-content">
-                                <div class="text-content">
-                                    <p class="card-path">~/Interests/music</p>
-                                    <h3>Music &amp; Creative Pursuits</h3>
-                                    <p>Violin player exploring varied repertoire; enjoys chess for strategy, origami for
-                                        precision (incl. Satoshi Kamiya models), and Photoshop for digital creativity.</p>
-                                    <div class="tech-tags">
-                                        <span class="tag">Violin</span>
-                                        <span class="tag">Chess</span>
-                                        <span class="tag">Origami</span>
-                                        <span class="tag">Photoshop</span>
+                    <!-- Interests / Music Panel -->
+                    <div class="horizontal-panel" id="music-panel" data-label="Music">
+                        <div class="services-container">
+                            <div class="services-track">
+                                <div class="service-card">
+                                    <div class="card-content">
+                                        <div class="text-content">
+                                            <p class="card-path">~/Interests/music</p>
+                                            <h3>Music &amp; Creative Pursuits</h3>
+                                            <p>Violin player exploring varied repertoire; enjoys chess for strategy, origami for
+                                                precision (incl. Satoshi Kamiya models), and Photoshop for digital creativity.</p>
+                                            <div class="tech-tags">
+                                                <span class="tag">Violin</span>
+                                                <span class="tag">Chess</span>
+                                                <span class="tag">Origami</span>
+                                                <span class="tag">Photoshop</span>
+                                            </div>
+                                        </div>
+                                        <div class="image-content">
+                                            <img src="assets/icons/violin.svg" alt="Music and creative pursuits icon">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="image-content">
-                                    <img src="assets/icons/violin.svg" alt="Music and creative pursuits icon">
                                 </div>
                             </div>
                         </div>

@@ -7,14 +7,14 @@ const menuNumbers = document.querySelector('.menu-numbers');
 
 // --- Define Section Colors ---
 // Using specific Hex codes for a curated look, now including RGB for shadows
-// Re-indexed after removing sections 2, 3, 4
+// Re-indexed after full refactor
 const sectionColors = {
     default: {hex: '#003f97ff', rgb: '0,63,151'}, // Welcome (0)
-    1: {hex: '#3b82f6', rgb: '59,130,246'},        // Works (1) - now combines Apps, Data Science, Creative
-    2: {hex: '#f59e0b', rgb: '245,158,11'},        // Interests (formerly 5)
-    3: {hex: '#06b6d4', rgb: '6,182,212'},        // About (formerly 6)
-    4: {hex: '#0ea5e9', rgb: '14,165,233'},        // Background (formerly 7)
-    5: {hex: '#6366f1', rgb: '99,102,241'}         // Contact (formerly 8)
+    1: {hex: '#3b82f6', rgb: '59,130,246'},        // Works (1) - horizontal section
+    2: {hex: '#f59e0b', rgb: '245,158,11'},        // Interests (2) - horizontal section
+    3: {hex: '#06b6d4', rgb: '6,182,212'},        // About (3) - parent section
+    4: {hex: '#0ea5e9', rgb: '14,165,233'},        // Background (4) - timeline section
+    5: {hex: '#6366f1', rgb: '99,102,241'}         // Contact (5)
 };
 
 
