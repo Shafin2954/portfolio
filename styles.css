@@ -17,9 +17,9 @@ html, body {
 }
 
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: #ffffff;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    background: #0a0a0f;
+    color: #e2e8f0;
 }
 
 /* --- 1. Ambient Background Layer --- */
@@ -31,7 +31,17 @@ body {
     height: 100vh;
     z-index: -1; /* Behind everything */
     overflow: hidden;
-    background: #f8f9fa; /* Slight off-white base */
+    background: #0a0a0f; /* Slight off-white base */
+}
+
+.ambient-background::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(600px circle at var(--mx, 50%) var(--my, 50%),
+        rgba(255,255,255,0.03), transparent 70%);
+    pointer-events: none;
+    z-index: 1;
 }
 
 /* Shape Groups - Hidden by default */
@@ -90,7 +100,7 @@ body {
     animation-delay: -10s;
 }
 
-/* Section 1: Works Parent - Top left, bottom right, top center */
+/* Section 1: Works Parent - Top left, bottom right, top center (New combined Works Section) */
 .shape-group[data-section="1"] .shape-1 {
     top: -15%;
     left: -10%;
@@ -121,100 +131,8 @@ body {
     animation-delay: -12s;
 }
 
-/* Section 2: Apps - Right side, bottom center, top left */
+/* Section 2: Interests - Scattered (formerly 5) */
 .shape-group[data-section="2"] .shape-1 {
-    top: 10%;
-    right: -5%;
-    width: 50vh;
-    height: 50vh;
-    animation: float1 24s infinite ease-in-out;
-    animation-delay: 0s;
-}
-
-.shape-group[data-section="2"] .shape-2 {
-    bottom: 10%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 45vh;
-    height: 45vh;
-    opacity: 0.45;
-    animation: float2 26s infinite ease-in-out;
-    animation-delay: -6s;
-}
-
-.shape-group[data-section="2"] .shape-3 {
-    top: -10%;
-    left: 10%;
-    width: 40vh;
-    height: 40vh;
-    opacity: 0.3;
-    animation: float3 19s infinite ease-in-out;
-    animation-delay: -11s;
-}
-
-/* Section 3: Data Science - Center spread */
-.shape-group[data-section="3"] .shape-1 {
-    top: 20%;
-    right: 20%;
-    width: 55vh;
-    height: 55vh;
-    animation: float1 27s infinite ease-in-out;
-    animation-delay: 0s;
-}
-
-.shape-group[data-section="3"] .shape-2 {
-    bottom: 20%;
-    left: 20%;
-    width: 50vh;
-    height: 50vh;
-    opacity: 0.4;
-    animation: float2 29s infinite ease-in-out;
-    animation-delay: -8s;
-}
-
-.shape-group[data-section="3"] .shape-3 {
-    top: 50%;
-    right: 10%;
-    transform: translateY(-50%);
-    width: 42vh;
-    height: 42vh;
-    opacity: 0.35;
-    animation: float3 21s infinite ease-in-out;
-    animation-delay: -13s;
-}
-
-/* Section 4: Creative - Diagonal spread */
-.shape-group[data-section="4"] .shape-1 {
-    top: -5%;
-    left: 30%;
-    width: 48vh;
-    height: 48vh;
-    animation: float1 23s infinite ease-in-out;
-    animation-delay: 0s;
-}
-
-.shape-group[data-section="4"] .shape-2 {
-    bottom: -5%;
-    right: 30%;
-    width: 52vh;
-    height: 52vh;
-    opacity: 0.5;
-    animation: float2 25s infinite ease-in-out;
-    animation-delay: -5s;
-}
-
-.shape-group[data-section="4"] .shape-3 {
-    top: 60%;
-    left: 5%;
-    width: 38vh;
-    height: 38vh;
-    opacity: 0.3;
-    animation: float3 17s infinite ease-in-out;
-    animation-delay: -9s;
-}
-
-/* Section 5: Interests - Scattered */
-.shape-group[data-section="5"] .shape-1 {
     top: 15%;
     left: -8%;
     width: 53vh;
@@ -223,7 +141,7 @@ body {
     animation-delay: 0s;
 }
 
-.shape-group[data-section="5"] .shape-2 {
+.shape-group[data-section="2"] .shape-2 {
     bottom: 15%;
     right: -8%;
     width: 47vh;
@@ -233,7 +151,7 @@ body {
     animation-delay: -9s;
 }
 
-.shape-group[data-section="5"] .shape-3 {
+.shape-group[data-section="2"] .shape-3 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -244,8 +162,8 @@ body {
     animation-delay: -14s;
 }
 
-/* Section 6: About Parent - Top spread */
-.shape-group[data-section="6"] .shape-1 {
+/* Section 3: About Parent - Top spread (formerly 6) */
+.shape-group[data-section="3"] .shape-1 {
     top: -12%;
     left: 50%;
     transform: translateX(-50%);
@@ -255,7 +173,7 @@ body {
     animation-delay: 0s;
 }
 
-.shape-group[data-section="6"] .shape-2 {
+.shape-group[data-section="3"] .shape-2 {
     bottom: -12%;
     left: 15%;
     width: 44vh;
@@ -265,7 +183,7 @@ body {
     animation-delay: -6s;
 }
 
-.shape-group[data-section="6"] .shape-3 {
+.shape-group[data-section="3"] .shape-3 {
     top: 30%;
     right: 15%;
     width: 39vh;
@@ -275,8 +193,8 @@ body {
     animation-delay: -12s;
 }
 
-/* Section 7: Background/Timeline - Horizontal spread */
-.shape-group[data-section="7"] .shape-1 {
+/* Section 4: Background/Timeline - Horizontal spread (formerly 7) */
+.shape-group[data-section="4"] .shape-1 {
     top: 50%;
     left: -10%;
     transform: translateY(-50%);
@@ -286,7 +204,7 @@ body {
     animation-delay: 0s;
 }
 
-.shape-group[data-section="7"] .shape-2 {
+.shape-group[data-section="4"] .shape-2 {
     top: 50%;
     right: -10%;
     transform: translateY(-50%);
@@ -297,7 +215,7 @@ body {
     animation-delay: -7s;
 }
 
-.shape-group[data-section="7"] .shape-3 {
+.shape-group[data-section="4"] .shape-3 {
     top: 20%;
     left: 50%;
     transform: translateX(-50%);
@@ -308,8 +226,8 @@ body {
     animation-delay: -11s;
 }
 
-/* Section 8: Contact - Bottom spread */
-.shape-group[data-section="8"] .shape-1 {
+/* Section 5: Contact - Bottom spread (formerly 8) */
+.shape-group[data-section="5"] .shape-1 {
     bottom: -10%;
     left: 50%;
     transform: translateX(-50%);
@@ -319,7 +237,7 @@ body {
     animation-delay: 0s;
 }
 
-.shape-group[data-section="8"] .shape-2 {
+.shape-group[data-section="5"] .shape-2 {
     top: -10%;
     left: 20%;
     width: 46vh;
@@ -329,7 +247,7 @@ body {
     animation-delay: -8s;
 }
 
-.shape-group[data-section="8"] .shape-3 {
+.shape-group[data-section="5"] .shape-3 {
     top: 40%;
     right: 20%;
     width: 37vh;
@@ -388,11 +306,60 @@ body {
 }
 
 /* Parent menu sections - don't take up space */
-.section.parent-section {
+.section.parent-section { /* Original parent-section for About remains */
     height: 0;
     display: none;
     padding: 0;
     margin: 0;
+}
+
+/* Works Section specific styles */
+.works-section {
+    overflow: hidden; /* important for horizontal scroll */
+    position: relative;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Align content to start for horizontal scroll */
+}
+
+.works-track {
+    display: flex;
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch; /* For smoother scrolling on iOS */
+    scroll-snap-type: x mandatory;
+    height: 100%;
+    width: 100%; /* Take full width of parent */
+    position: absolute; /* Allows it to be positioned within the section */
+    left: 0;
+    top: 0;
+    padding: 0 5vw; /* Padding on sides for visual comfort */
+    scrollbar-width: none; /* Hide scrollbar for Firefox */
+    -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+}
+
+/* Hide scrollbar for Chrome, Safari, Opera */
+.works-track::-webkit-scrollbar {
+    display: none;
+}
+
+.works-panel {
+    flex: 0 0 100%; /* Each panel takes full width */
+    scroll-snap-align: center; /* Snap to center of panel */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 100%;
+    width: 90vw; /* Take 90% of viewport width */
+}
+
+/* Adjust services-container inside works-panel */
+.works-panel .services-container {
+    width: 100%;
+    height: 100%; /* Fill panel height */
+    position: relative;
+    overflow: hidden; /* Ensure inner track doesn't overflow */
 }
 
 /* Content Card Styles */
@@ -426,6 +393,8 @@ body {
     font-size: 0.95rem;
     opacity: 0.7;
 }
+
+.card-path, .path-text, .tag, .tech-stack-mini { font-family: 'JetBrains Mono', monospace; }
 
 .tech-stack-mini {
     margin-top: 1.5rem;
@@ -542,7 +511,7 @@ body {
 .content-card h2 {
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
-    color: #000000;
+    color: #f1f5f9;
     font-weight: 700;
     transition: transform 0.8s ease;
     text-align: left;
@@ -551,7 +520,7 @@ body {
 .content-card p {
     font-size: 1.2rem;
     line-height: 1.8;
-    color: #555;
+    color: #94a3b8;
     transition: transform 0.8s ease;
     text-align: left;
 }
@@ -593,12 +562,12 @@ body {
 .service-card {
     width: clamp(280px, 70vw, 900px);
     flex: 0 0 auto;
-    background: rgba(255, 255, 255, 0.65);
+    background: rgba(255,255,255,0.04);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: clamp(1.5rem, 3vw, 2rem);
     border-radius: 24px;
-    border: 1px solid rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255,255,255,0.08);
     box-shadow: 0 8px 32px rgba(0, 0, 0, 0.05);
     transform: scale(0.75);
     opacity: 0;
@@ -631,14 +600,14 @@ body {
 .service-card h3 {
     font-size: 1.8rem;
     margin-bottom: 1rem;
-    color: #000000;
+    color: #f1f5f9;
     font-weight: 700;
 }
 
 .service-card p {
     font-size: 1.1rem;
     line-height: 1.6;
-    color: #555;
+    color: #94a3b8;
 }
 
 /* Service card states */
@@ -647,6 +616,12 @@ body {
     opacity: 1;
     z-index: 2;
     /* filter: drop-shadow(0 25px 50px rgba(0, 0, 0, 0.15)); */
+}
+
+.service-card.active:hover {
+    box-shadow: 0 0 30px rgba(var(--accent-rgb), 0.15),
+                inset 0 0 0 1px rgba(var(--accent-rgb), 0.3);
+    transition: box-shadow 0.3s ease;
 }
 
 .service-card.near-prev {
@@ -724,7 +699,7 @@ body {
     left: 0;
     width: 100%;
     height: 3px;
-    background: rgba(0, 0, 0, 0.15);
+    background: rgba(241, 245, 249, 0.15); /* lightened for dark background */
     transform: translateY(-50%);
     z-index: 0;
     pointer-events: none;
@@ -775,7 +750,7 @@ body {
 .node-year {
     font-size: 1.2rem;
     font-weight: bold;
-    color: #000000;
+    color: #f1f5f9; /* lightened for dark background */
     margin-bottom: 15px;
     transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     opacity: 1;
@@ -789,7 +764,7 @@ body {
 .node-dot {
     width: 12px;
     height: 12px;
-    background: #000000;
+    background: #f1f5f9;
     border-radius: 50%;
     margin: 20px 0;
     position: relative;
@@ -804,7 +779,7 @@ body {
     position: absolute;
     width: clamp(24px, 2vw, 32px);
     height: clamp(24px, 2vw, 32px);
-    border: 2px solid #000000;
+    border: 2px solid #f1f5f9;
     border-radius: 50%;
     top: 50%;
     left: 50%;
@@ -896,8 +871,8 @@ body {
 .vertical-menu {
     width: clamp(270px, 20vw, 280px);
     /* Change height to max-height to allow it to shrink/grow */
-    max-height: 70vh; 
-    height: auto; 
+    max-height: 70vh;
+    height: auto;
     display: flex;
     position: relative;
     top: 20vh;
@@ -906,18 +881,19 @@ body {
     flex-shrink: 0;
     z-index: 50;
     /* Ensure the container doesn't block clicks outside the visible menu */
-    pointer-events: none; 
+    pointer-events: none;
+    background: rgba(10,10,15,0.85); /* Dark background for menu */
 }
 
 .menu-numbers {
     width: 100%;
     padding: 25px;
     border-radius: 20px;
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.07);
+    background: transparent; /* transparent because parent has background */
+    backdrop-filter: none; /* none because parent has background */
+    -webkit-backdrop-filter: none; /* none because parent has background */
+    border: none; /* no border */
+    box-shadow: none; /* no shadow */
     font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
     
     /* ADD THIS: Enable scrolling inside the card */
@@ -955,12 +931,12 @@ body {
 /* The Label (Text) */
 .tree-label {
     /* CHANGED: From block to inline-block so width wraps text */
-    display: inline-block; 
-    width: fit-content;    
+    display: inline-block;
+    width: fit-content;
     
     padding: 6px 12px; /* Increased side padding for better look */
     font-size: .9rem;
-    color: #666;
+    color: #a0aec0; /* Lighter color for dark background */
     cursor: pointer;
     border-radius: 6px;
     transition: all 0.2s ease;
@@ -970,21 +946,21 @@ body {
 }
 
 .tree-label:hover {
-    color: #000;
-    background: rgba(0, 0, 0, 0.05);
+    color: #f1f5f9; /* Even lighter on hover */
+    background: rgba(255, 255, 255, 0.08); /* Darker subtle hover */
 }
 
 /* Active State (Highlighted File) */
 .tree-label.active {
     color: #fff;
-    background: #333;
+    background: var(--accent-color); /* Use accent color for active file */
     font-weight: 600;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 /* Parent Folder Active State (Just text color, no background) */
 .tree-label.folder-active {
-    color: #000;
+    color: #f1f5f9; /* Lighter color for active folder */
     font-weight: 700;
 }
 
@@ -998,7 +974,7 @@ body {
     left: 0;
     bottom: 0;
     width: 1px;
-    background: #ccc;
+    background: #4a5568; /* Darker line for contrast */
 }
 
 /* Horizontal Line (─) */
@@ -1009,7 +985,7 @@ body {
     left: 0;
     width: 15px;
     height: 1px;
-    background: #ccc;
+    background: #4a5568; /* Darker line for contrast */
 }
 
 /* Fix for the Last Child (└─) */
@@ -1021,7 +997,7 @@ body {
 .root-item > .tree-label {
     padding-left: 0;
     font-weight: 700;
-    color: #333;
+    color: #f1f5f9; /* Lighter color for root */
     margin-bottom: 5px;
 }
 .root-item > .tree-label:hover {
@@ -1223,6 +1199,12 @@ body {
     top: 10px;
     left: 80px;
     right: 20px;
+}
+
+.progress-bar {
+    position: fixed; top: 0; left: 0; height: 2px; width: 0%;
+    background: var(--accent-color); z-index: 200;
+    transition: width 0.1s linear;
     height: 60px;
     z-index: 90;
     align-items: center;
@@ -1313,7 +1295,7 @@ body {
 .welcome-header h2 {
     font-size: 3rem;
     line-height: 1.1;
-    color: #333;
+    color: #f1f5f9;
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -1324,7 +1306,7 @@ body {
 .welcome-header h3 {
     font-size: 1.5rem;
     line-height: 1.1;
-    color: #333;
+    color: #f1f5f9;
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -1342,7 +1324,7 @@ body {
 .welcome-description p {
     font-size: 1.2rem;
     line-height: 1.8;
-    color: #555;
+    color: #94a3b8;
     margin-bottom: 0.5rem;
 }
 
@@ -1350,6 +1332,17 @@ body {
     font-size: 0.95rem;
     opacity: 0.7;
     margin-top: 1rem;
+}
+
+.tech-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1rem; }
+.tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    padding: 0.2rem 0.7rem;
+    border-radius: 999px;
+    border: 1px solid var(--accent-color);
+    color: var(--accent-color);
+    background: transparent;
 }
 
 /* Animation States */
@@ -1387,6 +1380,11 @@ body {
     .welcome-top-row {
         gap: 0.75rem; /* Smaller gap for mobile */
         margin-bottom: 1rem;
+    }
+}
+
+.cursor { animation: blink 1s step-end infinite; }
+@keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
     }
     
     .welcome-header h2 {

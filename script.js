@@ -21,6 +21,7 @@ const sectionColors = {
 
 
 // --- 1. Define Tree Structure ---
+// Updated with new section indexing and panel IDs
 const menuTree = {
     label: '~/',
     id: 'root',
@@ -28,23 +29,23 @@ const menuTree = {
         { label: 'README.md', sectionIndex: 0 },
         { 
             label: 'Works', 
-            sectionIndex: 1,
+            sectionIndex: 1, // This refers to the main vertical Works section
             children: [
-                { label: 'Apps', sectionIndex: 2 },
-                { label: 'Data_Science', sectionIndex: 3 },
-                { label: 'Creative', sectionIndex: 4 },
+                { label: 'Apps', sectionIndex: 1, panelId: 'apps-panel' },
+                { label: 'Data_Science', sectionIndex: 1, panelId: 'data-science-panel' },
+                { label: 'Creative', sectionIndex: 1, panelId: 'creative-panel' },
             ]
         },
         { 
             label: 'Interests', 
-            sectionIndex: 5
+            sectionIndex: 2 // Formerly 5
         },
         { 
             label: 'About', 
-            sectionIndex: 6, 
+            sectionIndex: 3, // Formerly 6
             children: [
-                { label: 'Background', sectionIndex: 7 },
-                { label: 'Contact', sectionIndex: 8 },
+                { label: 'Background', sectionIndex: 4 }, // Formerly 7
+                { label: 'Contact', sectionIndex: 5 },    // Formerly 8
             ]
         }
     ]
@@ -52,9 +53,10 @@ const menuTree = {
 
 // --- Breadcrumb Initialization (MUST be early before updateSections is called) ---
 const breadcrumbText = document.querySelector('.path-text');
-const sectionPaths = {};
+const sectionPaths = {}; // Stores paths for main vertical sections
+const panelPaths = {};    // Stores paths for horizontal panels within Works
 
-// Pre-calculate paths for every index
+// Pre-calculate paths for every index and panel
 function mapPaths(node, currentPath = '') {
     let newPath = currentPath;
     
@@ -66,7 +68,13 @@ function mapPaths(node, currentPath = '') {
     }
 
     if (node.sectionIndex !== undefined && node.sectionIndex !== -1) {
+        // Store path for main vertical section
         sectionPaths[node.sectionIndex] = newPath;
+        
+        // If it's a panel, also store its path
+        if (node.panelId) {
+            panelPaths[node.panelId] = newPath;
+        }
     }
 
     if (node.children) {
@@ -75,10 +83,16 @@ function mapPaths(node, currentPath = '') {
 }
 
 // Function to update the visual header
-function updateBreadcrumb(index) {
+// Can update based on main section index OR a panel ID
+function updateBreadcrumb(index, panelId = null) {
     if (!breadcrumbText) return;
 
-    const newPath = sectionPaths[index] || '~/';
+    let newPath = '~/';
+    if (panelId && panelPaths[panelId]) {
+        newPath = panelPaths[panelId];
+    } else if (sectionPaths[index]) {
+        newPath = sectionPaths[index];
+    }
     
     if (breadcrumbText.textContent !== newPath) {
         breadcrumbText.classList.add('changing');
@@ -108,7 +122,7 @@ function createTreeDom(node, isRoot = false) {
     let ul = null;
     if (node.children && node.children.length > 0) {
         ul = document.createElement('ul');
-        if (isRoot) ul.classList.add('expanded');
+        if (isRoot || (node.sectionIndex === 1 && node.label === 'Works')) ul.classList.add('expanded'); // Works expanded by default
         
         node.children.forEach(childNode => {
             ul.appendChild(createTreeDom(childNode));
@@ -119,14 +133,32 @@ function createTreeDom(node, isRoot = false) {
     if (node.sectionIndex !== undefined && node.sectionIndex !== -1) {
         label.dataset.index = node.sectionIndex;
     }
+    if (node.panelId) {
+        label.dataset.panelId = node.panelId;
+    }
 
     // Unified Click Handler
     label.addEventListener('click', (e) => {
-        // 1. Navigation: Scroll to section if it exists
+        // 1. Navigation: Scroll to section (vertical) or panel (horizontal)
         if (node.sectionIndex !== undefined && node.sectionIndex !== -1) {
-            const target = sections[node.sectionIndex];
-            if (target) {
-                target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            const targetSection = sections[node.sectionIndex];
+            if (targetSection) {
+                targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                
+                // If it's a panel, also scroll horizontally to it within the Works section
+                if (node.panelId) {
+                    const worksSection = document.querySelector('.works-section[data-index="1"]');
+                    const targetPanel = worksSection ? worksSection.querySelector(`#${node.panelId}`) : null;
+                    if (targetPanel) {
+                        worksSection.querySelector('.works-track').scrollTo({
+                            left: targetPanel.offsetLeft,
+                            behavior: 'smooth'
+                        });
+                        // Update active panel immediately when clicked
+                        updateWorksPanelState(node.panelId);
+                        updateBreadcrumb(node.sectionIndex, node.panelId);
+                    }
+                }
             }
         }
         
@@ -180,7 +212,10 @@ function updateSections() {
     let activeSectionIndex = -1;
     let minDistance = Infinity;
 
-    sections.forEach((section, index) => {
+    // Filter out parent-sections that are only containers, like the 'About' section itself
+    const visibleSections = Array.from(sections).filter(s => s.offsetHeight > 0);
+
+    visibleSections.forEach((section, index) => {
         const sectionTop = section.offsetTop;
         const sectionHeight = section.offsetHeight;
         const sectionCenter = sectionTop + (sectionHeight / 2);
@@ -204,20 +239,35 @@ function updateSections() {
         }
 
         // Identify the single "most active" section for the menu
+        // Use data-index for the comparison
+        const sectionDataIndex = parseInt(section.dataset.index);
         if (dist < minDistance && dist < containerHeight * 0.6) {
             minDistance = dist;
-            activeSectionIndex = index;
+            activeSectionIndex = sectionDataIndex; // Use the data-index here
         }
     });
 
     // 2. Update Menu Tree based on Active Index
     if (activeSectionIndex !== -1) {
-        updateTreeState(activeSectionIndex);
-        updateBreadcrumb(activeSectionIndex);
+        updateTreeState(activeSectionIndex); // Pass the data-index
+        
+        // If the active section is 'Works' (index 1), let the IntersectionObserver handle breadcrumb for sub-panels
+        // Otherwise, update the breadcrumb for the main section
+        if (activeSectionIndex !== 1) {
+            updateBreadcrumb(activeSectionIndex);
+        } else {
+            // For 'Works' section, the IntersectionObserver for works-panels will update the breadcrumb
+            // Default to '~/Works' if no panel is specifically active yet.
+            const currentActiveWorksPanel = document.querySelector('.works-panel.active');
+            if (!currentActiveWorksPanel) {
+                 updateBreadcrumb(activeSectionIndex);
+            }
+        }
         
         // 3. Update Ambient Background Color
-        const newColor = sectionColors[activeSectionIndex] || sectionColors.default;
-        document.documentElement.style.setProperty('--accent-color', newColor);
+        const colorData = sectionColors[activeSectionIndex] || sectionColors.default;
+        document.documentElement.style.setProperty('--accent-color', colorData.hex);
+        document.documentElement.style.setProperty('--accent-rgb', colorData.rgb);
         
         // 4. Update Background Shapes Visibility
         updateBackgroundShapes(activeSectionIndex);
@@ -237,20 +287,26 @@ function updateBackgroundShapes(activeSectionIndex) {
     });
 }
 
-function updateTreeState(activeIndex) {
-    // 1. Reset ONLY the text highlighting (active state)
+function updateTreeState(activeIndex, activePanelId = null) {
+    // 1. Reset all text highlighting (active state)
     document.querySelectorAll('.tree-label').forEach(el => {
         el.classList.remove('active', 'folder-active');
     });
 
     // 2. Collapse all auto-expanded ULs (keep only manually expanded ones)
-    // Collect the path to the active section first
-    const activeLabel = document.querySelector(`.tree-label[data-index="${activeIndex}"]`);
-    const pathToActive = new Set(); // Store ULs that are in the path to active section
+    const pathToActive = new Set(); // Store ULs that are in the path to the active section/panel
+
+    // Find the active label (either main section or specific panel)
+    let activeLabelElement = null;
+    if (activePanelId) {
+        activeLabelElement = document.querySelector(`.tree-label[data-panel-id="${activePanelId}"]`);
+    } else {
+        activeLabelElement = document.querySelector(`.tree-label[data-index="${activeIndex}"]:not([data-panel-id])`);
+    }
     
-    if (activeLabel) {
+    if (activeLabelElement) {
         // Build the path to the active element
-        let parentUl = activeLabel.parentElement.parentElement; // li -> ul
+        let parentUl = activeLabelElement.parentElement.parentElement; // li -> ul
         while (parentUl && parentUl.classList.contains('file-tree') === false) {
             pathToActive.add(parentUl);
             parentUl = parentUl.parentElement.parentElement;
@@ -267,7 +323,7 @@ function updateTreeState(activeIndex) {
                 // Auto-expanded and not in current path → collapse it
                 el.classList.remove('expanded');
             } else if (isInPath) {
-                // In the path to active section → expand it
+                // In the path to active section/panel → ensure it's expanded
                 el.classList.add('expanded');
             }
             // If isManual=true, keep its current state (do nothing)
@@ -275,12 +331,12 @@ function updateTreeState(activeIndex) {
     });
 
     // 3. Highlight the active element and its path
-    if (activeLabel) {
-        // Highlight the file itself
-        activeLabel.classList.add('active');
+    if (activeLabelElement) {
+        // Highlight the file/panel label itself
+        activeLabelElement.classList.add('active');
 
         // Traverse up to highlight parent folder labels
-        let parentUl = activeLabel.parentElement.parentElement; // li -> ul
+        let parentUl = activeLabelElement.parentElement.parentElement; // li -> ul
         while (parentUl && parentUl.classList.contains('file-tree') === false) {
             // Highlight the parent folder label
             const parentLabel = parentUl.previousElementSibling; // ul -> label
@@ -319,6 +375,12 @@ updateSections();
 // Initialize background shapes on page load
 updateBackgroundShapes(0);
 
+// Cursor Spotlight effect
+document.addEventListener('mousemove', (e) => {
+    document.documentElement.style.setProperty('--mx', `${e.clientX}px`);
+    document.documentElement.style.setProperty('--my', `${e.clientY}px`);
+});
+
 // Update on window resize
 let resizeTimeout;
 window.addEventListener('resize', () => {
@@ -326,100 +388,86 @@ window.addEventListener('resize', () => {
     resizeTimeout = setTimeout(updateSections, 100);
 });
 
-// Services sections handling - handle multiple service sections
-const servicesSections = document.querySelectorAll('.services-section');
-const scrollCooldown = 250; // Faster cooldown for snappier feel
+// --- Services sections handling ---
+// This now only applies to the Interests section (formerly data-index 5, now 2)
+const interestsSection = document.querySelector('.section[data-index="2"].services-section');
+const interestsTrack = interestsSection ? interestsSection.querySelector('.services-track') : null;
+const interestsCards = interestsSection ? interestsSection.querySelectorAll('.service-card') : [];
 
-// Store state for each services section
-const servicesState = {};
-servicesSections.forEach((section, idx) => {
-    servicesState[idx] = {
-        currentIndex: 0,
-        lastIndex: 0,
-        isComplete: false,
-        initialized: false,
-        lastScrollTime: 0,
-        track: section.querySelector('.services-track'),
-        cards: section.querySelectorAll('.service-card')
-    };
-});
+let interestsState = {
+    currentIndex: 0,
+    lastIndex: 0,
+    isComplete: false,
+    initialized: false,
+    lastScrollTime: 0,
+    track: interestsTrack,
+    cards: interestsCards
+};
 
-function handleServicesScroll(e, sectionIndex) {
-    const state = servicesState[sectionIndex];
-    const section = servicesSections[sectionIndex];
-    
-    if (!section.classList.contains('active')) return;
-    
+function handleServiceCardScroll(e, state) {
+    if (!state.cards.length) return true; // No cards, allow vertical scroll
+
+    // Check if the parent vertical section is active
+    const parentSection = state.track.closest('.section');
+    if (!parentSection || !parentSection.classList.contains('active')) return true;
+
     const direction = e.deltaY > 0 ? 1 : -1;
     const now = Date.now();
+    const scrollCooldown = 250; // Faster cooldown for snappier feel
     
-    // Prevent scroll if cooldown hasn't passed
-    if (now - state.lastScrollTime < scrollCooldown) return;
-    
-    // Scrolling right (next card)
-    if (direction > 0 && state.currentIndex < state.cards.length - 1) {
+    if (now - state.lastScrollTime < scrollCooldown) {
         e.preventDefault();
-        state.currentIndex++;
-        updateServicesPositions(sectionIndex);
-        state.lastScrollTime = now;
-        
-        // Mark complete when reaching last card
-        if (state.currentIndex === state.cards.length - 1) {
-            state.isComplete = true;
-        }
         return false;
     }
     
-    // Scrolling left (previous card)
+    if (direction > 0 && state.currentIndex < state.cards.length - 1) {
+        e.preventDefault();
+        state.currentIndex++;
+        updateServiceCardPositions(state);
+        state.lastScrollTime = now;
+        state.isComplete = (state.currentIndex === state.cards.length - 1);
+        return false;
+    }
+    
     if (direction < 0 && state.currentIndex > 0) {
         e.preventDefault();
         state.currentIndex--;
-        updateServicesPositions(sectionIndex);
+        updateServiceCardPositions(state);
         state.lastScrollTime = now;
         state.isComplete = false;
         return false;
     }
     
     // Allow vertical scroll: at start going up, or at end going down
-    if ((direction < 0 && state.currentIndex === 0) || 
-        (direction > 0 && state.isComplete)) {
+    if ((direction < 0 && state.currentIndex === 0) || (direction > 0 && state.isComplete)) {
         state.lastScrollTime = now;
         return true;
     }
     
-    // Block scroll otherwise
     e.preventDefault();
     return false;
 }
 
-function updateServicesPositions(sectionIndex) {
-    const state = servicesState[sectionIndex];
-    const section = servicesSections[sectionIndex];
+function updateServiceCardPositions(state) {
     const { track, cards, currentIndex } = state;
     
-    if (cards.length === 0) return;
+    if (cards.length === 0 || !track) return;
     
     const cardWidth = cards[0].offsetWidth;
     const gap = 32; // Gap between cards (2rem)
-    const containerWidth = section.clientWidth;
+    const containerWidth = track.parentElement.clientWidth; // Get width of services-container
     const totalCardWidth = cardWidth + gap;
     
-    // Calculate the offset to center the active card with improved centering
     const centerOffset = (containerWidth - cardWidth) / 2;
     const scrollOffset = currentIndex * totalCardWidth;
     const translateX = centerOffset - scrollOffset;
     
-    // Apply smooth transition with improved easing for better snapping
     track.style.transition = 'transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
     track.style.transform = `translateX(${translateX}px)`;
     
-    // Update card states with smooth animations and better visibility
     cards.forEach((card, index) => {
         card.classList.remove('active', 'near-prev', 'near-next', 'prev', 'next', 'far-prev', 'far-next');
-        
         const distance = index - currentIndex;
-        
-        // Apply animation class for smooth transitions
         card.style.transition = 'all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1)';
         
         if (distance === 0) {
@@ -440,45 +488,129 @@ function updateServicesPositions(sectionIndex) {
     });
 }
 
-// Initialize services - restore last position when returning
-function initServices(sectionIndex) {
-    const state = servicesState[sectionIndex];
+// Initialize service card group - restore last position when returning
+function initServiceCardGroup(state) {
     state.currentIndex = state.lastIndex;
     state.isComplete = state.currentIndex === state.cards.length - 1;
     state.initialized = true;
-    updateServicesPositions(sectionIndex);
+    updateServiceCardPositions(state);
 }
 
-// Listen for when services sections become active/inactive
-scrollContainer.addEventListener('scroll', () => {
-    servicesSections.forEach((section, index) => {
-        const state = servicesState[index];
-        const isActive = section.classList.contains('active');
-        
-        if (isActive && !state.initialized) {
-            initServices(index);
+// Listen for when Interests section becomes active/inactive
+if (interestsSection) {
+    scrollContainer.addEventListener('scroll', () => {
+        const isActive = interestsSection.classList.contains('active');
+        if (isActive && !interestsState.initialized) {
+            initServiceCardGroup(interestsState);
         }
-        if (!isActive && state.initialized) {
-            // Save current position when leaving section
-            state.lastIndex = state.currentIndex;
-            state.initialized = false;
+        if (!isActive && interestsState.initialized) {
+            interestsState.lastIndex = interestsState.currentIndex;
+            interestsState.initialized = false;
         }
     });
-});
 
-// Add wheel event listeners to all services sections
-servicesSections.forEach((section, index) => {
-    section.addEventListener('wheel', (e) => {
-        const shouldAllowVerticalScroll = handleServicesScroll(e, index);
+    interestsSection.addEventListener('wheel', (e) => {
+        const shouldAllowVerticalScroll = handleServiceCardScroll(e, interestsState);
         if (!shouldAllowVerticalScroll) {
             e.preventDefault();
         }
     }, { passive: false });
+}
+
+
+// --- Works Section Horizontal Panel Logic (New) ---
+const worksSection = document.querySelector('.works-section[data-index="1"]');
+const worksTrack = worksSection ? worksSection.querySelector('.works-track') : null;
+const worksPanels = worksSection ? worksSection.querySelectorAll('.works-panel') : [];
+
+let activeWorksPanelId = null;
+
+// Intersection Observer for Works Panels
+const worksPanelObserver = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.75) { // Panel mostly in view
+            const panelId = entry.target.id;
+            const panelLabel = entry.target.dataset.label;
+            
+            if (activeWorksPanelId !== panelId) {
+                activeWorksPanelId = panelId;
+                updateTreeState(1, activeWorksPanelId); // Update menu for Works (index 1) and its panel
+                updateBreadcrumb(1, activeWorksPanelId); // Update breadcrumb
+                updateWorksPanelState(activeWorksPanelId); // Update internal card states for the newly active panel
+            }
+        }
+    });
+}, {
+    root: worksTrack,
+    rootMargin: '0px',
+    threshold: 0.75 // Trigger when 75% of the panel is visible
 });
 
-// Timeline scroll handling
+// Initialize observer for each works panel
+worksPanels.forEach(panel => {
+    worksPanelObserver.observe(panel);
+});
+
+// Store state for each works panel's inner service cards
+const worksPanelServiceStates = {};
+worksPanels.forEach((panel, idx) => {
+    const panelId = panel.id;
+    worksPanelServiceStates[panelId] = {
+        currentIndex: 0,
+        lastIndex: 0,
+        isComplete: false,
+        initialized: false,
+        lastScrollTime: 0,
+        track: panel.querySelector('.services-track'),
+        cards: panel.querySelectorAll('.service-card')
+    };
+});
+
+function updateWorksPanelState(currentActivePanelId) {
+    worksPanels.forEach(panel => {
+        const panelId = panel.id;
+        if (panelId === currentActivePanelId) {
+            panel.classList.add('active');
+            // Initialize inner service cards for the active panel
+            const state = worksPanelServiceStates[panelId];
+            if (state && !state.initialized) {
+                initServiceCardGroup(state);
+            }
+        } else {
+            panel.classList.remove('active');
+            // When leaving a panel, save its state
+            const state = worksPanelServiceStates[panelId];
+            if (state && state.initialized) {
+                state.lastIndex = state.currentIndex;
+                state.initialized = false;
+            }
+        }
+    });
+}
+
+// Add wheel event listener for inner service cards within works panels
+if (worksSection) {
+    worksPanels.forEach(panel => {
+        panel.addEventListener('wheel', (e) => {
+            if (panel.classList.contains('active')) {
+                const panelId = panel.id;
+                const state = worksPanelServiceStates[panelId];
+                if (state) {
+                    const shouldAllowVerticalScroll = handleServiceCardScroll(e, state);
+                    if (!shouldAllowVerticalScroll) {
+                        e.preventDefault();
+                    }
+                }
+            }
+        }, { passive: false });
+    });
+}
+
+
+// --- Timeline scroll handling ---
+// Re-indexed timeline section from data-index="7" to data-index="4"
 const timeline = document.querySelector('.timeline');
-const timelineSection = document.querySelector('.timeline-section');
+const timelineSection = document.querySelector('.timeline-section[data-index="4"]');
 const timelineNodes = document.querySelectorAll('.timeline-node');
 let currentTimelineIndex = 0;
 let isTimelineComplete = false;
@@ -602,16 +734,19 @@ if (timelineSection) {
 
 // Initialize timeline when section becomes active
 let timelineInitialized = false;
-scrollContainer.addEventListener('scroll', () => {
-    const timelineIsActive = timelineSection && timelineSection.classList.contains('active');
-    if (timelineIsActive && !timelineInitialized) {
-        timelineInitialized = true;
-        initTimeline();
-    }
-    if (!timelineIsActive) {
-        timelineInitialized = false;
-    }
-});
+if (scrollContainer) { // Ensure scrollContainer exists
+    scrollContainer.addEventListener('scroll', () => {
+        const timelineIsActive = timelineSection && timelineSection.classList.contains('active');
+        if (timelineIsActive && !timelineInitialized) {
+            timelineInitialized = true;
+            initTimeline();
+        }
+        if (!timelineIsActive) {
+            timelineInitialized = false;
+        }
+    });
+}
+
 
 // Also initialize on page load in case timeline section is already in view
 document.addEventListener('DOMContentLoaded', () => {
@@ -705,6 +840,10 @@ scrollContainer.addEventListener('scroll', () => {
         isScrolling = false;
         snapToNearestSection();
     }, 150);  // Reduced delay for snappier feel
+
+    // Update scroll progress bar
+    const pct = scrollContainer.scrollTop / (scrollContainer.scrollHeight - scrollContainer.clientHeight);
+    document.querySelector('.progress-bar').style.width = `${pct * 100}%`;
 });
 
 function snapToNearestSection() {
@@ -752,6 +891,38 @@ window.addEventListener('beforeunload', () => {
         cancelAnimationFrame(rafId);
     }
 });
+
+// Typing Animation for Hero
+const titles = ['Developer', 'Engineer', 'Designer'];
+let titleIndex = 0; // Using ti for titleIndex
+let charIndex = 0;  // Using ci for charIndex
+let deleting = false;
+const typedOutputElement = document.getElementById('typed-output');
+
+function type() {
+    if (!typedOutputElement) return; // Exit if element not found
+
+    const word = titles[titleIndex];
+    typedOutputElement.textContent = deleting ? word.slice(0, charIndex--) : word.slice(0, charIndex++);
+
+    if (!deleting && charIndex > word.length) {
+        deleting = true;
+        setTimeout(type, 1200); // Pause before deleting
+        return;
+    }
+    if (deleting && charIndex < 0) {
+        deleting = false;
+        titleIndex = (titleIndex + 1) % titles.length; // Move to next word
+        charIndex = 0;
+    }
+    setTimeout(type, deleting ? 60 : 100); // Typing speed
+}
+
+// Start typing animation once DOM is loaded
+document.addEventListener('DOMContentLoaded', () => {
+    type();
+});
+
 
 // --- Mobile Menu Logic ---
 const hamburgerBtn = document.querySelector('.hamburger-btn');
