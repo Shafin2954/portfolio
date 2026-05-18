@@ -1385,7 +1385,6 @@ body {
 
 .cursor { animation: blink 1s step-end infinite; }
 @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-    }
     
     .welcome-header h2 {
         font-size: 1.5rem;
@@ -1407,4 +1406,3 @@ body {
     .welcome-description p {
         font-size: 0.8rem;
     }
-}
