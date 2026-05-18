@@ -19,7 +19,7 @@ const sectionColors = {
 
 
 // --- 1. Define Tree Structure ---
-// Updated with new section indexing and panel IDs
+// Updated with new section indexing and panel IDs, now including Interests sub-panels
 const menuTree = {
     label: '~/',
     id: 'root',
@@ -36,7 +36,12 @@ const menuTree = {
         },
         { 
             label: 'Interests', 
-            sectionIndex: 2 // Formerly 5
+            sectionIndex: 2, // This refers to the main vertical Interests section
+            children: [
+                { label: 'Books', sectionIndex: 2, panelId: 'books-panel' },
+                { label: 'Cubing', sectionIndex: 2, panelId: 'cubing-panel' },
+                { label: 'Music', sectionIndex: 2, panelId: 'music-panel' },
+            ]
         },
         { 
             label: 'About', 
@@ -52,7 +57,7 @@ const menuTree = {
 // --- Breadcrumb Initialization (MUST be early before updateSections is called) ---
 const breadcrumbText = document.querySelector('.path-text');
 const sectionPaths = {}; // Stores paths for main vertical sections
-const panelPaths = {};    // Stores paths for horizontal panels within Works
+const panelPaths = {};    // Stores paths for horizontal panels within Works & Interests
 
 // Pre-calculate paths for every index and panel
 function mapPaths(node, currentPath = '') {
@@ -120,7 +125,8 @@ function createTreeDom(node, isRoot = false) {
     let ul = null;
     if (node.children && node.children.length > 0) {
         ul = document.createElement('ul');
-        if (isRoot || (node.sectionIndex === 1 && node.label === 'Works')) ul.classList.add('expanded'); // Works expanded by default
+        // Works and Interests should be expanded by default for better discoverability
+        if (isRoot || (node.label === 'Works') || (node.label === 'Interests')) ul.classList.add('expanded'); 
         
         node.children.forEach(childNode => {
             ul.appendChild(createTreeDom(childNode));
@@ -143,17 +149,19 @@ function createTreeDom(node, isRoot = false) {
             if (targetSection) {
                 targetSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
                 
-                // If it's a panel, also scroll horizontally to it within the Works section
+                // If it's a panel, also scroll horizontally to it within its parent horizontal section
                 if (node.panelId) {
-                    const worksSection = document.querySelector('.works-section[data-index="1"]');
-                    const targetPanel = worksSection ? worksSection.querySelector(`#${node.panelId}`) : null;
-                    if (targetPanel) {
-                        worksSection.querySelector('.works-track').scrollTo({
-                            left: targetPanel.offsetLeft,
+                    const parentHorizontalSection = document.querySelector(`.horizontal-section[data-index="${node.sectionIndex}"]`);
+                    const targetPanel = parentHorizontalSection ? parentHorizontalSection.querySelector(`#${node.panelId}`) : null;
+                    const horizontalTrack = parentHorizontalSection ? parentHorizontalSection.querySelector('.horizontal-track') : null;
+
+                    if (targetPanel && horizontalTrack) {
+                        horizontalTrack.scrollTo({
+                            left: targetPanel.offsetLeft - horizontalTrack.scrollPaddingLeft, // Account for scroll-padding
                             behavior: 'smooth'
                         });
                         // Update active panel immediately when clicked
-                        updateWorksPanelState(node.panelId);
+                        updateHorizontalPanelState(node.sectionIndex, node.panelId);
                         updateBreadcrumb(node.sectionIndex, node.panelId);
                     }
                 }
@@ -247,18 +255,19 @@ function updateSections() {
 
     // 2. Update Menu Tree based on Active Index
     if (activeSectionIndex !== -1) {
-        updateTreeState(activeSectionIndex); // Pass the data-index
-        
-        // If the active section is 'Works' (index 1), let the IntersectionObserver handle breadcrumb for sub-panels
-        // Otherwise, update the breadcrumb for the main section
-        if (activeSectionIndex !== 1) {
+        // If the active section is a horizontal type (Works or Interests),
+        // let the IntersectionObserver handle breadcrumb and panel updates.
+        // Otherwise, update for the main vertical section.
+        if (activeSectionIndex !== 1 && activeSectionIndex !== 2) { // 1 for Works, 2 for Interests
+            updateTreeState(activeSectionIndex); // Pass the data-index
             updateBreadcrumb(activeSectionIndex);
         } else {
-            // For 'Works' section, the IntersectionObserver for works-panels will update the breadcrumb
-            // Default to '~/Works' if no panel is specifically active yet.
-            const currentActiveWorksPanel = document.querySelector('.works-panel.active');
-            if (!currentActiveWorksPanel) {
-                 updateBreadcrumb(activeSectionIndex);
+            // For horizontal sections, only update the main folder if no specific panel is active
+            // The IO will handle activePanelId update
+            const currentActivePanel = document.querySelector(`.horizontal-panel.active`);
+            if (!currentActivePanel) {
+                updateTreeState(activeSectionIndex);
+                updateBreadcrumb(activeSectionIndex);
             }
         }
         
@@ -731,7 +740,6 @@ if (timelineSection) {
 }
 
 // Initialize timeline when section becomes active
-let timelineInitialized = false;
 if (scrollContainer) { // Ensure scrollContainer exists
     scrollContainer.addEventListener('scroll', () => {
         const timelineIsActive = timelineSection && timelineSection.classList.contains('active');
