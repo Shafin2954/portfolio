@@ -218,7 +218,23 @@ function updateSections() {
         // 3. Update Ambient Background Color
         const newColor = sectionColors[activeSectionIndex] || sectionColors.default;
         document.documentElement.style.setProperty('--accent-color', newColor);
+        
+        // 4. Update Background Shapes Visibility
+        updateBackgroundShapes(activeSectionIndex);
     }
+}
+
+// Function to update which shape group is visible
+function updateBackgroundShapes(activeSectionIndex) {
+    const shapeGroups = document.querySelectorAll('.shape-group');
+    shapeGroups.forEach(group => {
+        const groupSection = parseInt(group.getAttribute('data-section'));
+        if (groupSection === activeSectionIndex) {
+            group.classList.add('active');
+        } else {
+            group.classList.remove('active');
+        }
+    });
 }
 
 function updateTreeState(activeIndex) {
@@ -299,6 +315,9 @@ smoothUpdate();
 
 // Initial update
 updateSections();
+
+// Initialize background shapes on page load
+updateBackgroundShapes(0);
 
 // Update on window resize
 let resizeTimeout;
