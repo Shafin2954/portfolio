@@ -7,7 +7,9 @@
     <title>Shafin Ahmed</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
@@ -24,28 +26,28 @@
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
         </div>
-        
+
         <!-- Section 2: Interests -->
         <div class="shape-group" data-section="2">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
         </div>
-        
+
         <!-- Section 3: About Parent -->
         <div class="shape-group" data-section="3">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
         </div>
-        
+
         <!-- Section 4: Background/Timeline -->
         <div class="shape-group" data-section="4">
             <div class="shape shape-1"></div>
             <div class="shape shape-2"></div>
             <div class="shape shape-3"></div>
         </div>
-        
+
         <!-- Section 5: Contact -->
         <div class="shape-group" data-section="5">
             <div class="shape shape-1"></div>
@@ -59,8 +61,6 @@
         <div class="bar"></div>
         <div class="bar"></div>
     </button>
-
-    <div class="progress-bar"></div>
 
     <div class="breadcrumb-header">
         <span class="path-text">~/</span>
@@ -93,11 +93,11 @@
                 </div>
             </div>
 
-            <!-- Works Section (Horizontal Scroll Container) -->
-            <div class="section horizontal-section" data-index="1">
-                <div class="horizontal-track">
-                    <!-- Works / Apps Panel -->
-                    <div class="horizontal-panel" id="apps-panel" data-label="Apps">
+            <!-- Works Section (New combined horizontal scroll) -->
+            <div class="section works-section" data-index="1">
+                <div class="works-track">
+                    <!-- Works / Apps -->
+                    <div class="works-panel" id="apps-panel" data-label="Apps">
                         <div class="services-container">
                             <div class="services-track"> <!-- Keep services-track for individual card animations -->
                                 <div class="service-card">
@@ -105,8 +105,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Works/Apps/ai-assistant</p>
                                             <h3>Offline AI Assistant</h3>
-                                            <p>Privacy-first AI assistant that runs fully offline with a terminal-inspired
-                                                interface. Uses local language models for fast, secure interactions without cloud
+                                            <p>Privacy-first AI assistant that runs fully offline with a
+                                                terminal-inspired
+                                                interface. Uses local language models for fast, secure interactions
+                                                without cloud
                                                 dependency.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Python</span>
@@ -125,8 +127,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Works/Apps/parade-state</p>
                                             <h3>Flask Parade State Manager</h3>
-                                            <p>Real-time personnel tracking system deployed at college to manage attendance and
-                                                location data. Flask + SQLite with role-based access control to streamline
+                                            <p>Real-time personnel tracking system deployed at college to manage
+                                                attendance and
+                                                location data. Flask + SQLite with role-based access control to
+                                                streamline
                                                 administrative workflows.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Python</span>
@@ -143,8 +147,8 @@
                         </div>
                     </div>
 
-                    <!-- Works / Data Science Panel -->
-                    <div class="horizontal-panel" id="data-science-panel" data-label="Data_Science">
+                    <!-- Works / Data Science -->
+                    <div class="works-panel" id="data-science-panel" data-label="Data_Science">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -153,7 +157,8 @@
                                             <p class="card-path">~/Works/Data_Science/agriculture-forecast</p>
                                             <h3>Agricultural Yield Forecasting Model</h3>
                                             <p>Machine learning model predicting next-year crop yields using a decade of
-                                                historical data. Built with time-series analysis, regression, and thorough
+                                                historical data. Built with time-series analysis, regression, and
+                                                thorough
                                                 validation on real-world datasets.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Python</span>
@@ -172,8 +177,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Works/Data_Science/kaggle-winner</p>
                                             <h3>🏆 Department Kaggle Competition - 1st Place</h3>
-                                            <p>Top-ranked solution using feature engineering and ensemble modeling. Tuned
-                                                hyperparameters and domain-driven insights to deliver best-in-class classification
+                                            <p>Top-ranked solution using feature engineering and ensemble modeling.
+                                                Tuned
+                                                hyperparameters and domain-driven insights to deliver best-in-class
+                                                classification
                                                 performance.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Python</span>
@@ -190,8 +197,8 @@
                         </div>
                     </div>
 
-                    <!-- Works / Creative Panel -->
-                    <div class="horizontal-panel" id="creative-panel" data-label="Creative">
+                    <!-- Works / Creative -->
+                    <div class="works-panel" id="creative-panel" data-label="Creative">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -199,8 +206,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Works/Creative/ambigrams</p>
                                             <h3>Ambigram Design Portfolio</h3>
-                                            <p>Collection of custom ambigrams inspired by Angels &amp; Demons. Symmetrical
-                                                typographic art that reads identically when rotated 180°, balancing geometry and
+                                            <p>Collection of custom ambigrams inspired by Angels &amp; Demons.
+                                                Symmetrical
+                                                typographic art that reads identically when rotated 180°, balancing
+                                                geometry and
                                                 negative space.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Illustrator</span>
@@ -219,11 +228,10 @@
                 </div>
             </div>
 
-            <!-- Interests Section (Horizontal Scroll Container) -->
-            <div class="section horizontal-section" data-index="2">
-                <div class="horizontal-track">
-                    <!-- Interests / Books Panel -->
-                    <div class="horizontal-panel" id="books-panel" data-label="Books">
+            <!-- Interests Section -->
+            <div class="section interests-section" data-index="2">
+                <div class="interests-track">
+                    <div class="interests-panel">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -231,8 +239,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Interests/books</p>
                                             <h3>Reading List</h3>
-                                            <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon. Currently
-                                                studying O'Reilly's PyTorch deep learning textbook to deepen ML foundations.</p>
+                                            <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon.
+                                                Currently
+                                                studying O'Reilly's PyTorch deep learning textbook to deepen ML
+                                                foundations.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Mystery</span>
                                                 <span class="tag">Thriller</span>
@@ -248,8 +258,7 @@
                         </div>
                     </div>
 
-                    <!-- Interests / Cubing Panel -->
-                    <div class="horizontal-panel" id="cubing-panel" data-label="Cubing">
+                    <div class="interests-panel">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -257,8 +266,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Interests/cubing</p>
                                             <h3>Speedcubing &amp; Puzzle Collection</h3>
-                                            <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1, Megaminx,
-                                                Pyraminx and more. Follows global cubing community for algorithm optimization.</p>
+                                            <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1,
+                                                Megaminx,
+                                                Pyraminx and more. Follows global cubing community for algorithm
+                                                optimization.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Rubik's Cube</span>
                                                 <span class="tag">Algorithms</span>
@@ -274,8 +285,7 @@
                         </div>
                     </div>
 
-                    <!-- Interests / Music Panel -->
-                    <div class="horizontal-panel" id="music-panel" data-label="Music">
+                    <div class="interests-panel">
                         <div class="services-container">
                             <div class="services-track">
                                 <div class="service-card">
@@ -283,8 +293,10 @@
                                         <div class="text-content">
                                             <p class="card-path">~/Interests/music</p>
                                             <h3>Music &amp; Creative Pursuits</h3>
-                                            <p>Violin player exploring varied repertoire; enjoys chess for strategy, origami for
-                                                precision (incl. Satoshi Kamiya models), and Photoshop for digital creativity.</p>
+                                            <p>Violin player exploring varied repertoire; enjoys chess for strategy,
+                                                origami for
+                                                precision (incl. Satoshi Kamiya models), and Photoshop for digital
+                                                creativity.</p>
                                             <div class="tech-tags">
                                                 <span class="tag">Violin</span>
                                                 <span class="tag">Chess</span>
