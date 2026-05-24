@@ -23,7 +23,7 @@
 <body>
     <nav class="dot-nav" aria-label="Section navigation">
         <a href="#index" class="dot active" data-label="Index" aria-label="Index"></a>
-        <a href="#domains" class="dot" data-label="Domains" aria-label="Domains"></a>
+        <a href="#domainsWrapper" class="dot" data-label="Domains" aria-label="Domains"></a>
         <a href="#made" class="dot" data-label="Made" aria-label="Made"></a>
         <a href="#otherwise" class="dot" data-label="Otherwise" aria-label="Otherwise"></a>
         <a href="#find" class="dot" data-label="Find me" aria-label="Find me"></a>
@@ -49,44 +49,46 @@
             </div>
         </section>
 
-        <section class="section" id="domains">
-            <div class="domains-track" id="domainsTrack">
-                <article class="domain-panel active" data-domain="builder">
-                    <div class="domain-bg"></div>
-                    <div class="domain-illus">
-                        <img src="./assets/illus-builder.svg" alt="Builder illustration with terminal and tools">
-                    </div>
-                    <div class="domain-slant" aria-hidden="true"></div>
-                    <div class="domain-label">
-                        <h2>Builder</h2>
-                        <span>Software · Systems · Tools</span>
-                    </div>
-                </article>
+        <div class="section domains-wrapper" id="domainsWrapper">
+            <section id="domains">
+                <div class="domains-track" id="domainsTrack">
+                    <article class="domain-panel active" data-domain="builder">
+                        <div class="domain-bg"></div>
+                        <div class="domain-illus">
+                            <img src="./assets/illus-builder.svg" alt="Builder illustration with terminal and tools">
+                        </div>
+                        <div class="domain-slant" aria-hidden="true"></div>
+                        <div class="domain-label">
+                            <h2>Builder</h2>
+                            <span>Software · Systems · Tools</span>
+                        </div>
+                    </article>
 
-                <article class="domain-panel" data-domain="analyst">
-                    <div class="domain-bg"></div>
-                    <div class="domain-illus">
-                        <img src="./assets/illus-analyst.svg" alt="Analyst illustration with chart and scatter points">
-                    </div>
-                    <div class="domain-slant" aria-hidden="true"></div>
-                    <div class="domain-label">
-                        <h2>Analyst</h2>
-                        <span>Statistics · Data · Models</span>
-                    </div>
-                </article>
+                    <article class="domain-panel" data-domain="analyst">
+                        <div class="domain-bg"></div>
+                        <div class="domain-illus">
+                            <img src="./assets/illus-analyst.svg" alt="Analyst illustration with chart and scatter points">
+                        </div>
+                        <div class="domain-slant" aria-hidden="true"></div>
+                        <div class="domain-label">
+                            <h2>Analyst</h2>
+                            <span>Statistics · Data · Models</span>
+                        </div>
+                    </article>
 
-                <article class="domain-panel" data-domain="creative">
-                    <div class="domain-bg"></div>
-                    <div class="domain-illus">
-                        <img src="./assets/illus-creative.svg" alt="Creative illustration with origami and note">
-                    </div>
-                    <div class="domain-label">
-                        <h2>Creative</h2>
-                        <span>Origami · Music · Design</span>
-                    </div>
-                </article>
-            </div>
-        </section>
+                    <article class="domain-panel" data-domain="creative">
+                        <div class="domain-bg"></div>
+                        <div class="domain-illus">
+                            <img src="./assets/illus-creative.svg" alt="Creative illustration with origami and note">
+                        </div>
+                        <div class="domain-label">
+                            <h2>Creative</h2>
+                            <span>Origami · Music · Design</span>
+                        </div>
+                    </article>
+                </div>
+            </section>
+        </div>
 
         <section class="section" id="made">
             <p class="section-eyebrow">Made</p>

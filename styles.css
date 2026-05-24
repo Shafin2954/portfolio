@@ -9,6 +9,7 @@
     --font-display: "Cormorant Garamond", Georgia, serif;
     --font-body: "DM Sans", system-ui, sans-serif;
     --font-mono: "JetBrains Mono", monospace;
+    --scroll-progress: 0;
 }
 
 * {
@@ -20,6 +21,7 @@
 html,
 body {
     height: 100%;
+    scroll-behavior: smooth;
 }
 
 body {
@@ -30,14 +32,13 @@ body {
 }
 
 .page-wrapper {
-    scroll-snap-type: y mandatory;
     overflow-y: scroll;
     overflow-x: hidden;
     height: 100vh;
+    scroll-behavior: smooth;
 }
 
 .section {
-    scroll-snap-align: start;
     min-height: 100vh;
     width: 100%;
     position: relative;
@@ -52,6 +53,32 @@ body {
     flex-direction: column;
     gap: 12px;
     z-index: 100;
+    padding: 6px 0;
+}
+
+.dot-nav::before,
+.dot-nav::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 1px;
+    pointer-events: none;
+}
+
+.dot-nav::before {
+    top: 6px;
+    bottom: 6px;
+    background: var(--stroke);
+    opacity: 0.8;
+}
+
+.dot-nav::after {
+    top: 6px;
+    bottom: 6px;
+    background: var(--rust);
+    transform: translateX(-50%) scaleY(var(--scroll-progress));
+    transform-origin: top;
 }
 
 .dot {
@@ -184,9 +211,16 @@ body.cursor-hover .cursor-dot {
     opacity: 0;
 }
 
-#domains {
-    overflow: hidden;
+.domains-wrapper {
+    height: 300vh;
     position: relative;
+}
+
+#domains {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow: hidden;
 }
 
 .domains-track {
@@ -194,7 +228,7 @@ body.cursor-hover .cursor-dot {
     width: 300vw;
     height: 100vh;
     transform: translateX(0);
-    transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+    transition: none;
     will-change: transform;
 }
 
