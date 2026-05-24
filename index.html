@@ -5,398 +5,195 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Shafin Ahmed</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="styles.css">
+    <meta name="description" content="Shafin Ahmed — statistician and builder. Data, software, and creative systems.">
+    <meta property="og:title" content="Shafin Ahmed">
+    <meta property="og:description"
+        content="Statistician & builder. Works across data, software, and creative systems.">
+    <meta property="og:image" content="./assets/og-image.svg">
+    <link rel="canonical" href="https://yourdomain.com">
+    <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=DM+Sans:wght@300;400&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <div class="ambient-background">
-        <!-- Section 0: Welcome -->
-        <div class="shape-group" data-section="0">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-        <!-- Section 1: Works Parent -->
-        <div class="shape-group" data-section="1">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+    <nav class="dot-nav" aria-label="Section navigation">
+        <a href="#index" class="dot active" data-label="Index" aria-label="Index"></a>
+        <a href="#domains" class="dot" data-label="Domains" aria-label="Domains"></a>
+        <a href="#made" class="dot" data-label="Made" aria-label="Made"></a>
+        <a href="#otherwise" class="dot" data-label="Otherwise" aria-label="Otherwise"></a>
+        <a href="#find" class="dot" data-label="Find me" aria-label="Find me"></a>
+    </nav>
 
-        <!-- Section 2: Interests -->
-        <div class="shape-group" data-section="2">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+    <div class="cursor-dot" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
 
-        <!-- Section 3: About Parent -->
-        <div class="shape-group" data-section="3">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
+    <main class="page-wrapper" id="pageWrapper">
+        <section class="section" id="index">
+            <div class="index-layout">
+                <div class="index-name">
+                    <h1>Shafin<br>Ahmed</h1>
+                </div>
+                <div class="index-illustration">
+                    <img src="./assets/illus-hero.svg" alt="Line-art portrait illustration of Shafin Ahmed">
+                </div>
+                <p class="index-tagline">
+                    Statistician & builder. I work across data,<br>software, and creative systems.
+                </p>
+                <span class="index-scroll-hint" id="indexScrollHint">↓ scroll</span>
+                <div class="rust-dot"></div>
+            </div>
+        </section>
 
-        <!-- Section 4: Background/Timeline -->
-        <div class="shape-group" data-section="4">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-
-        <!-- Section 5: Contact -->
-        <div class="shape-group" data-section="5">
-            <div class="shape shape-1"></div>
-            <div class="shape shape-2"></div>
-            <div class="shape shape-3"></div>
-        </div>
-    </div>
-
-    <button class="hamburger-btn" aria-label="Toggle Menu">
-        <div class="bar"></div>
-        <div class="bar"></div>
-        <div class="bar"></div>
-    </button>
-
-    <div class="breadcrumb-header">
-        <span class="path-text">~/</span>
-    </div>
-
-    <div class="main-container">
-        <div class="vertical-menu">
-            <div class="menu-numbers"></div>
-        </div>
-        <div class="scroll-container">
-            <!-- Welcome Section -->
-            <div class="section" data-index="0">
-                <div class="welcome-layout">
-                    <div class="welcome-top-row">
-                        <div class="hero-image-wrapper">
-                            <img class="hero-flat-image" src="assets/me.jpg" alt="Shafin Ahmed">
-                        </div>
-                        <div class="welcome-header">
-                            <h2><span class="highlight">Shafin Ahmed</span></h2>
-                            <h3><span id="typed-output"></span><span class="cursor">|</span></h3>
-                        </div>
+        <section class="section" id="domains">
+            <div class="domains-track" id="domainsTrack">
+                <article class="domain-panel active" data-domain="builder">
+                    <div class="domain-bg"></div>
+                    <div class="domain-illus">
+                        <img src="./assets/illus-builder.svg" alt="Builder illustration with terminal and tools">
                     </div>
-                    <div class="welcome-description">
-                        <p>
-                            Working across software engineering, data, and creative systems,
-                            connecting technical depth with cross-domain thinking.
-                        </p>
-                        <p class="sub-text">Navigate the home directory to explore my work</p>
+                    <div class="domain-slant" aria-hidden="true"></div>
+                    <div class="domain-label">
+                        <h2>Builder</h2>
+                        <span>Software · Systems · Tools</span>
+                    </div>
+                </article>
+
+                <article class="domain-panel" data-domain="analyst">
+                    <div class="domain-bg"></div>
+                    <div class="domain-illus">
+                        <img src="./assets/illus-analyst.svg" alt="Analyst illustration with chart and scatter points">
+                    </div>
+                    <div class="domain-slant" aria-hidden="true"></div>
+                    <div class="domain-label">
+                        <h2>Analyst</h2>
+                        <span>Statistics · Data · Models</span>
+                    </div>
+                </article>
+
+                <article class="domain-panel" data-domain="creative">
+                    <div class="domain-bg"></div>
+                    <div class="domain-illus">
+                        <img src="./assets/illus-creative.svg" alt="Creative illustration with origami and note">
+                    </div>
+                    <div class="domain-label">
+                        <h2>Creative</h2>
+                        <span>Origami · Music · Design</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section class="section" id="made">
+            <p class="section-eyebrow">Made</p>
+
+            <article class="project-card">
+                <div class="project-text">
+                    <span class="project-meta">Inventory Module · 2025</span>
+                    <h3 class="project-title">Secondary Currency<br>for Odoo 18</h3>
+                    <p class="project-decision">
+                        Chose ORM patches over a custom model because the client’s existing data structure
+                        could not afford a mid-deployment migration.
+                    </p>
+                    <p class="project-body">
+                        Tracks inventory value in BDT and USD simultaneously for a Bangladesh-based exporter.
+                        Deployed over WireGuard VPN with zero downtime.
+                    </p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Odoo</span><span>PostgreSQL</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="./assets/icons/app-dev.svg" alt="Screenshot placeholder for Odoo secondary currency module">
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-text">
+                    <span class="project-meta">Portfolio Engine · 2026</span>
+                    <h3 class="project-title">Section-Gated Scroll<br>Navigation System</h3>
+                    <p class="project-decision">
+                        Chose direction-aware gate logic instead of free-scroll carousels to avoid accidental
+                        vertical exits during horizontal exploration.
+                    </p>
+                    <p class="project-body">
+                        Built vertical-to-horizontal handoff for panel sections, with state persistence and
+                        synchronized section indicator updates.
+                    </p>
+                    <div class="project-tags">
+                        <span>JavaScript</span><span>UX Systems</span><span>Interaction Design</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="./assets/icons/web-dev.svg" alt="Screenshot placeholder for section-gated portfolio">
+                </div>
+            </article>
+
+            <article class="project-card">
+                <div class="project-text">
+                    <span class="project-meta">Forecasting · 2024</span>
+                    <h3 class="project-title">Agricultural Yield<br>Forecasting Model</h3>
+                    <p class="project-decision">
+                        Chose interpretable feature engineering over black-box complexity to keep stakeholder
+                        trust high during field-level decision making.
+                    </p>
+                    <p class="project-body">
+                        Predicted next-season crop output from multi-year historical data with robust
+                        validation, helping compare high-risk and low-risk crop choices.
+                    </p>
+                    <div class="project-tags">
+                        <span>Python</span><span>Pandas</span><span>Scikit-learn</span>
+                    </div>
+                </div>
+                <div class="project-image">
+                    <img src="./assets/icons/data.svg" alt="Screenshot placeholder for yield forecasting model">
+                </div>
+            </article>
+        </section>
+
+        <section class="section" id="otherwise">
+            <div class="shelf-wrapper">
+                <p class="section-eyebrow">Otherwise</p>
+                <div class="shelf">
+                    <div class="shelf-line"></div>
+                    <div class="shelf-shadow"></div>
+
+                    <div class="shelf-item" data-stat="sub-30s 3×3">
+                        <img src="./assets/illus-cube.svg" alt="Rubik's cube illustration">
+                    </div>
+                    <div class="shelf-item tall" data-stat="classical + folk violin">
+                        <img src="./assets/illus-violin.svg" alt="Violin illustration">
+                    </div>
+                    <div class="shelf-item wide" data-stat="Satoshi Kamiya models">
+                        <img src="./assets/illus-crane.svg" alt="Origami crane illustration">
+                    </div>
+                    <div class="shelf-item" data-stat="daily endgame study">
+                        <img src="./assets/illus-chess.svg" alt="Chess knight illustration">
+                    </div>
+                    <div class="shelf-item" data-stat="top 15% Kaggle S6E2">
+                        <img src="./assets/illus-kaggle.svg" alt="Data chart illustration for Kaggle work">
                     </div>
                 </div>
             </div>
+        </section>
 
-            <!-- Works Section (New combined horizontal scroll) -->
-            <div class="section works-section" data-index="1">
-                <div class="works-track">
-                    <!-- Works / Apps -->
-                    <div class="works-panel" id="apps-panel" data-label="Apps">
-                        <div class="services-container">
-                            <div class="services-track"> <!-- Keep services-track for individual card animations -->
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Works/Apps/ai-assistant</p>
-                                            <h3>Offline AI Assistant</h3>
-                                            <p>Privacy-first AI assistant that runs fully offline with a
-                                                terminal-inspired
-                                                interface. Uses local language models for fast, secure interactions
-                                                without cloud
-                                                dependency.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Python</span>
-                                                <span class="tag">LLM</span>
-                                                <span class="tag">Offline</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/ai.svg" alt="Offline AI Assistant icon">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Works/Apps/parade-state</p>
-                                            <h3>Flask Parade State Manager</h3>
-                                            <p>Real-time personnel tracking system deployed at college to manage
-                                                attendance and
-                                                location data. Flask + SQLite with role-based access control to
-                                                streamline
-                                                administrative workflows.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Python</span>
-                                                <span class="tag">Flask</span>
-                                                <span class="tag">SQLite</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/app-dev.svg" alt="Parade State Manager icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Works / Data Science -->
-                    <div class="works-panel" id="data-science-panel" data-label="Data_Science">
-                        <div class="services-container">
-                            <div class="services-track">
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Works/Data_Science/agriculture-forecast</p>
-                                            <h3>Agricultural Yield Forecasting Model</h3>
-                                            <p>Machine learning model predicting next-year crop yields using a decade of
-                                                historical data. Built with time-series analysis, regression, and
-                                                thorough
-                                                validation on real-world datasets.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Python</span>
-                                                <span class="tag">Pandas</span>
-                                                <span class="tag">Scikit-learn</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/data.svg" alt="Agriculture Forecast icon">
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Works/Data_Science/kaggle-winner</p>
-                                            <h3>🏆 Department Kaggle Competition - 1st Place</h3>
-                                            <p>Top-ranked solution using feature engineering and ensemble modeling.
-                                                Tuned
-                                                hyperparameters and domain-driven insights to deliver best-in-class
-                                                classification
-                                                performance.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Python</span>
-                                                <span class="tag">XGBoost</span>
-                                                <span class="tag">Feature Engineering</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/data.svg" alt="Kaggle Winner icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Works / Creative -->
-                    <div class="works-panel" id="creative-panel" data-label="Creative">
-                        <div class="services-container">
-                            <div class="services-track">
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Works/Creative/ambigrams</p>
-                                            <h3>Ambigram Design Portfolio</h3>
-                                            <p>Collection of custom ambigrams inspired by Angels &amp; Demons.
-                                                Symmetrical
-                                                typographic art that reads identically when rotated 180°, balancing
-                                                geometry and
-                                                negative space.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Illustrator</span>
-                                                <span class="tag">Typography</span>
-                                                <span class="tag">Design</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/blender.svg" alt="Ambigram Design icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+        <section class="section" id="find">
+            <div class="find-content">
+                <h2 class="find-headline">
+                    If something I've built<br>interests you,<br>let's talk about it.
+                </h2>
+                <div class="find-links">
+                    <a href="https://github.com/Shafin2954" class="find-link">GitHub</a>
+                    <a href="https://www.linkedin.com" class="find-link">LinkedIn</a>
+                    <a href="mailto:hello@example.com" class="find-link">Email</a>
                 </div>
             </div>
-
-            <!-- Interests Section -->
-            <div class="section interests-section" data-index="2">
-                <div class="interests-track">
-                    <div class="interests-panel">
-                        <div class="services-container">
-                            <div class="services-track">
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Interests/books</p>
-                                            <h3>Reading List</h3>
-                                            <p>Mystery and thriller enthusiast—Sherlock Holmes, Robert Langdon.
-                                                Currently
-                                                studying O'Reilly's PyTorch deep learning textbook to deepen ML
-                                                foundations.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Mystery</span>
-                                                <span class="tag">Thriller</span>
-                                                <span class="tag">Deep Learning</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/books.svg" alt="Reading list icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="interests-panel">
-                        <div class="services-container">
-                            <div class="services-track">
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Interests/cubing</p>
-                                            <h3>Speedcubing &amp; Puzzle Collection</h3>
-                                            <p>Competitive speedcuber with 27s 3x3 PB; solves 4x4 through 6x6, Square-1,
-                                                Megaminx,
-                                                Pyraminx and more. Follows global cubing community for algorithm
-                                                optimization.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Rubik's Cube</span>
-                                                <span class="tag">Algorithms</span>
-                                                <span class="tag">Puzzles</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/game.svg" alt="Speedcubing icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="interests-panel">
-                        <div class="services-container">
-                            <div class="services-track">
-                                <div class="service-card">
-                                    <div class="card-content">
-                                        <div class="text-content">
-                                            <p class="card-path">~/Interests/music</p>
-                                            <h3>Music &amp; Creative Pursuits</h3>
-                                            <p>Violin player exploring varied repertoire; enjoys chess for strategy,
-                                                origami for
-                                                precision (incl. Satoshi Kamiya models), and Photoshop for digital
-                                                creativity.</p>
-                                            <div class="tech-tags">
-                                                <span class="tag">Violin</span>
-                                                <span class="tag">Chess</span>
-                                                <span class="tag">Origami</span>
-                                                <span class="tag">Photoshop</span>
-                                            </div>
-                                        </div>
-                                        <div class="image-content">
-                                            <img src="assets/icons/violin.svg" alt="Music and creative pursuits icon">
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- About Section (Empty - serves as container for submenus) -->
-            <div class="section parent-section" data-index="3">
-                <!-- Empty section, submenus will appear in the menu -->
-            </div>
-
-            <!-- Background Section (Timeline) -->
-            <div class="section timeline-section" data-index="4">
-                <div class="timeline-container">
-                    <div class="timeline">
-                        <div class="timeline-node">
-                            <div class="node-icon school">
-                                <img src="assets/icons/academic.svg" alt="School">
-                            </div>
-                            <div class="node-year">2014</div>
-                            <div class="node-dot"></div>
-                            <div class="node-content">
-                                <h3>High School</h3>
-                                <p>Started Computer Science journey with programming basics</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-node">
-                            <div class="node-icon university">
-                                <img src="assets/icons/academic.svg" alt="University">
-                            </div>
-                            <div class="node-year">2016</div>
-                            <div class="node-dot"></div>
-                            <div class="node-content">
-                                <h3>University</h3>
-                                <p>Bachelor's in Computer Science & Engineering</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-node">
-                            <div class="node-icon company">
-                                <img src="assets/icons/app-dev.svg" alt="Startup">
-                            </div>
-                            <div class="node-year">2019</div>
-                            <div class="node-dot"></div>
-                            <div class="node-content">
-                                <h3>First Startup</h3>
-                                <p>Started as Junior Developer at Tech Startup</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-node">
-                            <div class="node-icon company">
-                                <img src="assets/icons/app-dev.svg" alt="Corporate">
-                            </div>
-                            <div class="node-year">2021</div>
-                            <div class="node-dot"></div>
-                            <div class="node-content">
-                                <h3>Senior Developer</h3>
-                                <p>Lead Developer at Enterprise Software Company</p>
-                            </div>
-                        </div>
-
-                        <div class="timeline-node">
-                            <div class="node-icon freelance">
-                                <img src="assets/icons/app-dev.svg" alt="Freelance">
-                            </div>
-                            <div class="node-year">2025</div>
-                            <div class="node-dot"></div>
-                            <div class="node-content">
-                                <h3>Independent Developer</h3>
-                                <p>Freelance Full-stack Developer & Consultant</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Contact Section -->
-            <div class="section" data-index="5">
-                <div class="content-card">
-                    <h2>Contact</h2>
-                    <p>Let's work together! Reach out via email or connect with me on social media platforms. I'm always
-                        interested in discussing new projects and opportunities.</p>
-                </div>
-            </div>
-        </div>
-    </div>
+        </section>
+    </main>
 
     <script src="script.js"></script>
 </body>

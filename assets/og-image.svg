@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#F5F0E8"/>
+  <rect x="70" y="70" width="1060" height="490" stroke="#D4C9B5" stroke-width="2"/>
+  <text x="120" y="250" fill="#1C1A16" font-family="Cormorant Garamond, serif" font-size="110" font-weight="600">
+    Shafin Ahmed
+  </text>
+  <text x="120" y="330" fill="#8B7355" font-family="DM Sans, sans-serif" font-size="44">
+    Statistician &amp; builder
+  </text>
+  <text x="120" y="390" fill="#8B7355" font-family="DM Sans, sans-serif" font-size="34">
+    Data, software, and creative systems
+  </text>
+  <circle cx="1015" cy="162" r="14" fill="#C4600A"/>
+</svg>
