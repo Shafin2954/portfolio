@@ -4,13 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shafin Ahmed</title>
-    <meta name="description" content="Shafin Ahmed — statistician and builder. Data, software, and creative systems.">
+    <title>Shafin Ahmed — Statistician & Builder</title>
+    <meta name="description" content="Applied statistics & data science student and working developer. I build AI tools, data pipelines, and production software — across data, code, and craft.">
     <meta property="og:title" content="Shafin Ahmed">
-    <meta property="og:description"
-        content="Statistician & builder. Works across data, software, and creative systems.">
-    <meta property="og:image" content="./assets/og-image.svg">
-    <link rel="canonical" href="https://yourdomain.com">
+    <meta property="og:description" content="Statistician & builder. I build across data, software, and craft — models that predict, tools that work, systems that ship.">
+    <meta property="og:image" content="https://shafin2954.github.io/assets/avatar.jpg">
+    <meta property="og:image:width" content="640">
+    <meta property="og:image:height" content="640">
+    <meta property="og:url" content="https://shafin2954.github.io">
+    <meta name="twitter:card" content="summary_large_image">
+    <link rel="canonical" href="https://shafin2954.github.io">
     <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,34 +21,193 @@
         href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;600&family=DM+Sans:wght@300;400&family=JetBrains+Mono:wght@400;500&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Shafin Ahmed",
+      "jobTitle": "Statistician & Builder",
+      "email": "ahmedshafin240@gmail.com",
+      "sameAs": [
+        "https://github.com/Shafin2954",
+        "https://www.linkedin.com/in/shafin-ahmed-b63a31322/"
+      ]
+    }
+    </script>
 </head>
 
 <body>
     <nav class="dot-nav" aria-label="Section navigation">
         <a href="#index" class="dot active" data-label="Index" aria-label="Index"></a>
         <a href="#domainsWrapper" class="dot" data-label="Domains" aria-label="Domains"></a>
-        <a href="#made" class="dot" data-label="Made" aria-label="Made"></a>
-        <a href="#otherwise" class="dot" data-label="Otherwise" aria-label="Otherwise"></a>
-        <a href="#find" class="dot" data-label="Find me" aria-label="Find me"></a>
+        <a href="#made" class="dot" data-label="Selected Work" aria-label="Selected Work"></a>
+        <a href="#find" class="dot" data-label="Get in Touch" aria-label="Get in Touch"></a>
     </nav>
 
     <div class="cursor-dot" aria-hidden="true"></div>
     <div class="cursor-ring" aria-hidden="true"></div>
 
+    <!-- Work detail overlay -->
+    <div id="workOverlay" aria-hidden="true" aria-modal="true" role="dialog">
+        <button class="work-back" id="workBack" aria-label="Back to selected work">
+            <span class="work-back-arrow">←</span>
+            <span class="work-back-label">Back</span>
+        </button>
+
+        <!-- Fixeth -->
+        <article class="work-detail" id="work-fixeth" hidden>
+            <div class="work-detail-inner">
+                <div class="work-detail-hero">
+                    <div class="work-skeleton"></div>
+                    <video class="work-hero-img" src="./assets/works/fixeth.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <div class="work-detail-content">
+                    <p class="work-detail-hook">An AI tutor that speaks Bengali first.</p>
+                    <h2 class="work-detail-title">Fixeth</h2>
+                    <div class="work-detail-stack">
+                        <span>Next.js</span><span>Supabase</span><span>pgvector</span><span>n8n</span><span>Whisper</span><span>Claude</span>
+                    </div>
+                    <div class="work-sections">
+                        <section class="work-section">
+                            <h3>The problem</h3>
+                            <p>Bangladeshi students learn in Bengali, but the best AI learning tools are English-first and fail them — answers in the wrong language, no local context. Quality, adaptive tutoring in Bengali barely exists.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>What I built</h3>
+                            <p>A full AI-native learning platform, end to end. Educational video is transcribed with Whisper, chunked, and embedded into a pgvector knowledge base. A retrieval-augmented Claude layer answers student questions grounded in that material and adapts to the learner. n8n orchestrates the batch ingestion pipeline; Next.js drives the frontend; Supabase handles data and auth. Built every layer — UI, database, automation, and the AI.</p>
+                        </section>
+                        <figure class="work-figure">
+                            <img src="./assets/works/n8n.gif" alt="n8n batch ingestion pipeline workflow" loading="lazy">
+                            <figcaption>The n8n ingestion pipeline.</figcaption>
+                        </figure>
+                        <section class="work-section">
+                            <h3>The hard part</h3>
+                            <p>Making RAG actually work Bengali-first — retrieval quality, chunking, and answer grounding in a lower-resource language — plus a reliable video→transcript→embedding pipeline that runs unattended.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>Outcome</h3>
+                            <p>Flagship project for THE INFINITY AI BUILDFEST 2026 EdTech Track.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- ZATCA -->
+        <article class="work-detail" id="work-zatca" hidden>
+            <div class="work-detail-inner">
+                <div class="work-detail-hero">
+                    <div class="work-skeleton"></div>
+                    <video class="work-hero-img" src="./assets/works/zatca.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <div class="work-detail-content">
+                    <p class="work-detail-hook">Invoicing that satisfies Saudi tax law — automatically.</p>
+                    <h2 class="work-detail-title">ZATCA e-Invoicing SaaS</h2>
+                    <div class="work-detail-stack">
+                        <span>Flask</span><span>Python</span><span>ZATCA/Fatoora</span><span>PDF</span>
+                    </div>
+                    <div class="work-sections">
+                        <section class="work-section">
+                            <h3>The problem</h3>
+                            <p>Saudi Arabia mandates ZATCA-compliant e-invoicing. Every invoice must follow a strict structure — required tax fields, VAT handling, a compliant QR code, correct numbering — and getting it wrong means failed validation and penalties. Smaller businesses have no easy tooling for this.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>What I built</h3>
+                            <p>A Flask-based SaaS that generates and prints ZATCA-compliant invoices and automates the invoicing workflow — producing correctly structured, print-ready tax invoices so the business stays compliant without manual effort.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>The hard part</h3>
+                            <p>Encoding a government compliance spec exactly. Regulatory output is unforgiving — fields, formats, and the QR have to match the standard or the invoice is rejected. Most of the work was correctness, not features.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Tax Certificate -->
+        <article class="work-detail" id="work-tax-certificate" hidden>
+            <div class="work-detail-inner">
+                <div class="work-detail-hero">
+                    <div class="work-skeleton"></div>
+                    <video class="work-hero-img" src="./assets/works/tax.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <div class="work-detail-content">
+                    <p class="work-detail-hook">Every employee's income-tax certificate, computed from scratch.</p>
+                    <h2 class="work-detail-title">Bangladesh Tax Certificate Generator</h2>
+                    <div class="work-detail-stack">
+                        <span>Odoo 18</span><span>Python</span><span>QWeb</span><span>XML</span><span>NBR tax</span>
+                    </div>
+                    <div class="work-sections">
+                        <section class="work-section">
+                            <h3>The problem</h3>
+                            <p>Bangladeshi employers must compute each employee's salary income tax and issue tax certificates — across income heads, the NBR's income-slab brackets, and challan tracking. By hand, across a whole payroll, it's slow and error-prone, and there's no ready Odoo module for it.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>What I built</h3>
+                            <p>A custom Odoo module that encodes the full logic: income heads and slab brackets with their tax percentages — the slab math written from scratch; challan records each linked to the official government challan-verification page; a monthly XML intake that loads all employees' salary and tax data; per-employee certificate printing via QWeb.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>The hard part</h3>
+                            <p>No off-the-shelf logic exists for this. Wrote the bracket computation and challan-linking to match NBR rules exactly, and got the math right per employee — the part I'm proudest of.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+        <!-- Online Parade State -->
+        <article class="work-detail" id="work-parade-state" hidden>
+            <div class="work-detail-inner">
+                <div class="work-detail-hero">
+                    <div class="work-skeleton"></div>
+                    <video class="work-hero-img" src="./assets/works/lps.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <div class="work-detail-content">
+                    <p class="work-detail-hook">Every cadet's presence, tracked in real time.</p>
+                    <h2 class="work-detail-title">Online Parade State</h2>
+                    <div class="work-detail-stack">
+                        <span>Flask</span><span>Python</span><span>Bootstrap</span><span>JS</span><span>Realtime DB</span>
+                    </div>
+                    <div class="work-sections">
+                        <section class="work-section">
+                            <h3>The problem</h3>
+                            <p>Cadet colleges are semi-military institutions where presence tracking — the parade-state — is a daily, meticulous process. The Duty Cadet (D.Ca) managing it manually faces constant calculation overhead, and any error has real consequences in a disciplined environment.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>What I built</h3>
+                            <p>An online parade-state system that moves the process from pen-and-paper to a real-time database. The Duty Cadet can update presence records through a clean web interface; the numbers compute automatically and stay live. Front end: HTML, CSS, Bootstrap, JS. Back end: Flask (Python). Built during my time as a cadet.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>The hard part</h3>
+                            <p>Scoping a working full-stack system tightly enough to ship it in seven days, while getting the real-time sync right so simultaneous updates don't collide.</p>
+                        </section>
+                        <section class="work-section">
+                            <h3>Outcome</h3>
+                            <p>A functional real-time parade-state system — built in 7 days as a college student.</p>
+                        </section>
+                    </div>
+                </div>
+            </div>
+        </article>
+
+    </div>
+
     <main class="page-wrapper" id="pageWrapper">
         <section class="section" id="index">
             <div class="index-layout">
-                <div class="index-name">
-                    <h1>Shafin<br>Ahmed</h1>
+                <div class="index-intro">
+                    <div class="index-name">
+                        <h1>Shafin<br>Ahmed</h1>
+                    </div>
+                    <div class="rust-dot"></div>
+                    <p class="index-tagline">
+                        Statistician &amp; builder. I build across data,<br>software, and craft — models that predict,<br>tools that work, systems that ship.
+                    </p>
                 </div>
                 <div class="index-illustration">
-                    <img src="./assets/illus-hero.svg" alt="Line-art portrait illustration of Shafin Ahmed">
+                    <img src="./assets/avatar.jpg" alt="Shafin Ahmed">
                 </div>
-                <p class="index-tagline">
-                    Statistician & builder. I work across data,<br>software, and creative systems.
-                </p>
                 <span class="index-scroll-hint" id="indexScrollHint">↓ scroll</span>
-                <div class="rust-dot"></div>
             </div>
         </section>
 
@@ -57,10 +219,11 @@
                         <div class="domain-illus">
                             <img src="./assets/illus-builder.svg" alt="Builder illustration with terminal and tools">
                         </div>
-                        <div class="domain-slant" aria-hidden="true"></div>
+                        <div class="domain-slant slant-right" aria-hidden="true"></div>
                         <div class="domain-label">
                             <h2>Builder</h2>
                             <span>Software · Systems · Tools</span>
+                            <p class="domain-tagline">I build things that ship and survive contact with real users.</p>
                         </div>
                     </article>
 
@@ -69,10 +232,12 @@
                         <div class="domain-illus">
                             <img src="./assets/illus-analyst.svg" alt="Analyst illustration with chart and scatter points">
                         </div>
-                        <div class="domain-slant" aria-hidden="true"></div>
+                        <div class="domain-slant slant-left" aria-hidden="true"></div>
+                        <div class="domain-slant slant-right" aria-hidden="true"></div>
                         <div class="domain-label">
                             <h2>Analyst</h2>
                             <span>Statistics · Data · Models</span>
+                            <p class="domain-tagline">I find the signal in the noise, then make it impossible to ignore.</p>
                         </div>
                     </article>
 
@@ -81,9 +246,11 @@
                         <div class="domain-illus">
                             <img src="./assets/illus-creative.svg" alt="Creative illustration with origami and note">
                         </div>
+                        <div class="domain-slant slant-left" aria-hidden="true"></div>
                         <div class="domain-label">
                             <h2>Creative</h2>
                             <span>Origami · Music · Design</span>
+                            <p class="domain-tagline">Every constraint is just a design prompt.</p>
                         </div>
                     </article>
                 </div>
@@ -91,108 +258,115 @@
         </div>
 
         <section class="section" id="made">
-            <p class="section-eyebrow">Made</p>
+            <p class="section-eyebrow">Selected Work</p>
 
-            <article class="project-card">
+            <!-- Card 1: Fixeth -->
+            <article class="project-card" data-work="fixeth">
                 <div class="project-text">
-                    <span class="project-meta">Inventory Module · 2025</span>
-                    <h3 class="project-title">Secondary Currency<br>for Odoo 18</h3>
-                    <p class="project-decision">
-                        Chose ORM patches over a custom model because the client’s existing data structure
-                        could not afford a mid-deployment migration.
-                    </p>
+                    <span class="project-meta">AI · EdTech · 2026</span>
+                    <h3 class="project-title">Fixeth</h3>
+                    <p class="project-decision">An AI tutor that speaks Bengali first.</p>
                     <p class="project-body">
-                        Tracks inventory value in BDT and USD simultaneously for a Bangladesh-based exporter.
-                        Deployed over WireGuard VPN with zero downtime.
+                        A full AI-native learning platform built for Bangladeshi students in their own language.
+                        Transcribes educational video with Whisper, embeds it in pgvector, and uses retrieval-augmented
+                        Claude to answer questions and adapt to each learner. Active flagship for the INFINITY AI BUILDFEST 2026.
                     </p>
                     <div class="project-tags">
-                        <span>Python</span><span>Odoo</span><span>PostgreSQL</span>
+                        <span>Next.js</span><span>Supabase</span><span>pgvector</span><span>n8n</span><span>Whisper</span><span>Claude</span>
                     </div>
                 </div>
                 <div class="project-image">
-                    <img src="./assets/icons/app-dev.svg" alt="Screenshot placeholder for Odoo secondary currency module">
+                    <video class="work-blur" src="./assets/works/fixeth.mp4" autoplay muted loop playsinline></video>
+                    <video class="work-real" src="./assets/works/fixeth.mp4" autoplay muted loop playsinline></video>
+                    <span class="project-image-cta" aria-hidden="true">open →</span>
                 </div>
             </article>
 
-            <article class="project-card">
+            <!-- Card 2: ZATCA -->
+            <article class="project-card" data-work="zatca">
                 <div class="project-text">
-                    <span class="project-meta">Portfolio Engine · 2026</span>
-                    <h3 class="project-title">Section-Gated Scroll<br>Navigation System</h3>
-                    <p class="project-decision">
-                        Chose direction-aware gate logic instead of free-scroll carousels to avoid accidental
-                        vertical exits during horizontal exploration.
-                    </p>
+                    <span class="project-meta">SaaS · Compliance · 2024</span>
+                    <h3 class="project-title">ZATCA e-Invoicing<br>SaaS</h3>
+                    <p class="project-decision">Invoicing that satisfies Saudi tax law — automatically.</p>
                     <p class="project-body">
-                        Built vertical-to-horizontal handoff for panel sections, with state persistence and
-                        synchronized section indicator updates.
+                        A SaaS for Saudi Arabia that generates and prints ZATCA-compliant invoices and automates the invoicing workflow.
+                        Saudi mandates a strict e-invoicing format — required tax fields, QR, structured output — and non-compliance carries penalties.
+                        This handles the compliance so the business doesn't have to.
                     </p>
                     <div class="project-tags">
-                        <span>JavaScript</span><span>UX Systems</span><span>Interaction Design</span>
+                        <span>Flask</span><span>Python</span><span>ZATCA/Fatoora</span><span>PDF</span>
                     </div>
                 </div>
                 <div class="project-image">
-                    <img src="./assets/icons/web-dev.svg" alt="Screenshot placeholder for section-gated portfolio">
+                    <video class="work-blur" src="./assets/works/zatca.mp4" autoplay muted loop playsinline></video>
+                    <video class="work-real" src="./assets/works/zatca.mp4" autoplay muted loop playsinline></video>
+                    <span class="project-image-cta" aria-hidden="true">open →</span>
                 </div>
             </article>
 
-            <article class="project-card">
+            <!-- Card 3: Tax Certificate -->
+            <article class="project-card" data-work="tax-certificate">
                 <div class="project-text">
-                    <span class="project-meta">Forecasting · 2024</span>
-                    <h3 class="project-title">Agricultural Yield<br>Forecasting Model</h3>
-                    <p class="project-decision">
-                        Chose interpretable feature engineering over black-box complexity to keep stakeholder
-                        trust high during field-level decision making.
-                    </p>
+                    <span class="project-meta">Odoo Module · NBR · 2024</span>
+                    <h3 class="project-title">Bangladesh Tax<br>Certificate Generator</h3>
+                    <p class="project-decision">Every employee's income-tax certificate, computed from scratch.</p>
                     <p class="project-body">
-                        Predicted next-season crop output from multi-year historical data with robust
-                        validation, helping compare high-risk and low-risk crop choices.
+                        A custom Odoo module that encodes Bangladesh's salary income-tax rules end to end —
+                        income heads, slab brackets with their tax percentages, challan records each linked to the
+                        official government verification page, monthly XML intake, and per-employee certificate printing.
                     </p>
                     <div class="project-tags">
-                        <span>Python</span><span>Pandas</span><span>Scikit-learn</span>
+                        <span>Odoo 18</span><span>Python</span><span>QWeb</span><span>XML</span><span>NBR tax</span>
                     </div>
                 </div>
                 <div class="project-image">
-                    <img src="./assets/icons/data.svg" alt="Screenshot placeholder for yield forecasting model">
+                    <video class="work-blur" src="./assets/works/tax.mp4" autoplay muted loop playsinline></video>
+                    <video class="work-real" src="./assets/works/tax.mp4" autoplay muted loop playsinline></video>
+                    <span class="project-image-cta" aria-hidden="true">open →</span>
                 </div>
             </article>
-        </section>
 
-        <section class="section" id="otherwise">
-            <div class="shelf-wrapper">
-                <p class="section-eyebrow">Otherwise</p>
-                <div class="shelf">
-                    <div class="shelf-line"></div>
-                    <div class="shelf-shadow"></div>
-
-                    <div class="shelf-item" data-stat="sub-30s 3×3">
-                        <img src="./assets/illus-cube.svg" alt="Rubik's cube illustration">
-                    </div>
-                    <div class="shelf-item tall" data-stat="classical + folk violin">
-                        <img src="./assets/illus-violin.svg" alt="Violin illustration">
-                    </div>
-                    <div class="shelf-item wide" data-stat="Satoshi Kamiya models">
-                        <img src="./assets/illus-crane.svg" alt="Origami crane illustration">
-                    </div>
-                    <div class="shelf-item" data-stat="daily endgame study">
-                        <img src="./assets/illus-chess.svg" alt="Chess knight illustration">
-                    </div>
-                    <div class="shelf-item" data-stat="top 15% Kaggle S6E2">
-                        <img src="./assets/illus-kaggle.svg" alt="Data chart illustration for Kaggle work">
+            <!-- Card 4: Online Parade State -->
+            <article class="project-card" data-work="parade-state">
+                <div class="project-text">
+                    <span class="project-meta">Web App · College · Flask</span>
+                    <h3 class="project-title">Online Parade State</h3>
+                    <p class="project-decision">Every cadet's presence, tracked in real time.</p>
+                    <p class="project-body">
+                        Cadet colleges run on meticulous presence records — the parade-state. This replaces the
+                        Duty Cadet's manual calculations with a real-time web system: presence updates instantly,
+                        numbers compute themselves, and the whole operation runs online. Built in 7 days.
+                    </p>
+                    <div class="project-tags">
+                        <span>Flask</span><span>Python</span><span>Bootstrap</span><span>JS</span><span>Realtime DB</span>
                     </div>
                 </div>
+                <div class="project-image">
+                    <video class="work-blur" src="./assets/works/lps.mp4" autoplay muted loop playsinline></video>
+                    <video class="work-real" src="./assets/works/lps.mp4" autoplay muted loop playsinline></video>
+                    <span class="project-image-cta" aria-hidden="true">open →</span>
+                </div>
+            </article>
+
+            <div class="workshop-entry">
+                <a href="./gallery.html" class="workshop-link">The Workshop — full range →</a>
+                <span class="workshop-entry-sub">design work, creative projects, and making things by hand</span>
             </div>
         </section>
 
         <section class="section" id="find">
             <div class="find-content">
                 <h2 class="find-headline">
-                    If something I've built<br>interests you,<br>let's talk about it.
+                    I'm open to freelance projects<br>and collaborations.<br>If you're building something,<br>let's talk.
                 </h2>
                 <div class="find-links">
-                    <a href="https://github.com/Shafin2954" class="find-link">GitHub</a>
-                    <a href="https://www.linkedin.com" class="find-link">LinkedIn</a>
-                    <a href="mailto:hello@example.com" class="find-link">Email</a>
+                    <a href="https://github.com/Shafin2954" class="find-link" target="_blank" rel="noopener">GitHub</a>
+                    <a href="https://www.linkedin.com/in/shafin-ahmed-b63a31322/" class="find-link" target="_blank" rel="noopener">LinkedIn</a>
+                    <a href="mailto:ahmedshafin240@gmail.com" class="find-link">Email</a>
+                    <a href="./gallery.html" class="find-link">The Workshop</a>
+                    <a href="#" class="find-link find-link-todo" data-todo="add resume pdf path">Résumé <span class="todo-inline">[ add PDF ]</span></a>
                 </div>
+                <p class="find-colophon">© 2026 Shafin Ahmed · Designed &amp; built by hand</p>
             </div>
         </section>
     </main>

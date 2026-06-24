@@ -1,8 +1,11 @@
+/* TODO: --rust is no longer rust (now oxblood). Rename the variable to
+   something palette-neutral (e.g. --accent) everywhere it's used across
+   styles.css before finalizing. Defer until the palette is locked. */
 :root {
     --cream: #f5f0e8;
     --paper: #ede8dc;
     --ink: #1c1a16;
-    --rust: #c4600a;
+    --rust: #8c2f2f;
     --brown: #8b7355;
     --muted: #a09888;
     --stroke: #d4c9b5;
@@ -11,6 +14,91 @@
     --font-mono: "JetBrains Mono", monospace;
     --scroll-progress: 0;
 }
+
+/* ============================================================
+   PALETTE LAB — uncomment ONE block to preview it.
+   Each block overrides only the color vars (fonts/scroll stay).
+   The accent (--rust) + secondary text (--brown) pairing is what
+   moves the design away from the Claude/Notion editorial look.
+   ============================================================ */
+
+/* --- A · Forest & Ink — calm, intellectual, cool-paper --- */
+/*
+:root {
+    --cream: #f4f2ea;
+    --paper: #e8e4d6;
+    --ink: #18201b;
+    --rust: #2f6b4f;
+    --brown: #5c6b5a;
+    --muted: #97a092;
+    --stroke: #cdc9b8;
+}
+*/
+
+/* --- B · Cobalt & Slate — modern, technical, crisp --- */
+/*
+:root {
+    --cream: #f4f4f1;
+    --paper: #e7e8e2;
+    --ink: #17181c;
+    --rust: #2b4ea0;
+    --brown: #59616f;
+    --muted: #9398a3;
+    --stroke: #d0cfc8;
+}
+*/
+
+/* --- C · Oxblood & Stone — warm, literary, confident --- */
+/*
+:root {
+    --cream: #f3f1ec;
+    --paper: #e7e2d8;
+    --ink: #1c1a18;
+    --rust: #8c2f2f;
+    --brown: #6e655c;
+    --muted: #a39a8e;
+    --stroke: #d2cabb;
+}
+*/
+
+/* --- D · Teal & Sand — fresh, distinctive, friendly --- */
+/*
+:root {
+    --cream: #f4f2ea;
+    --paper: #e8e3d6;
+    --ink: #15201f;
+    --rust: #1f7a72;
+    --brown: #5f6b66;
+    --muted: #9aa19c;
+    --stroke: #cdc8ba;
+}
+*/
+
+/* --- E · Plum & Linen — quiet, artful, a little unexpected --- */
+/*
+:root {
+    --cream: #f5f2ec;
+    --paper: #eae3da;
+    --ink: #1f1a1d;
+    --rust: #6d3b6e;
+    --brown: #6b5d66;
+    --muted: #a298a0;
+    --stroke: #d4ccc6;
+}
+*/
+
+/* --- F · Ochre & Charcoal — warm gold, NOT rust, grounded --- */
+/*
+:root {
+    --cream: #f5f1e6;
+    --paper: #ece5d2;
+    --ink: #1c1a14;
+    --rust: #bb8420;
+    --brown: #6b6048;
+    --muted: #a39a82;
+    --stroke: #d6cdb6;
+}
+*/
 
 * {
     box-sizing: border-box;
@@ -29,6 +117,22 @@ body {
     color: var(--ink);
     font-family: var(--font-body);
     overflow: hidden;
+    cursor: none;
+}
+
+body.gallery-page {
+    overflow-y: auto;
+}
+
+a,
+button {
+    cursor: none;
+}
+
+:focus-visible {
+    outline: 2px solid var(--rust);
+    outline-offset: 3px;
+    border-radius: 2px;
 }
 
 .page-wrapper {
@@ -51,7 +155,7 @@ body {
     transform: translateY(-50%);
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 16px;
     z-index: 100;
     padding: 6px 0;
 }
@@ -82,12 +186,23 @@ body {
 }
 
 .dot {
-    width: 6px;
-    height: 6px;
+    width: 9px;
+    height: 9px;
     border-radius: 50%;
     background: var(--stroke);
     transition: background 0.3s, transform 0.3s;
     position: relative;
+}
+
+.dot::before {
+    content: "";
+    position: absolute;
+    inset: -11px;
+}
+
+.dot:hover {
+    transform: scale(1.6);
+    background: var(--brown);
 }
 
 .dot.active {
@@ -135,7 +250,7 @@ body {
     border: 1.5px solid var(--ink);
     border-radius: 50%;
     z-index: 9998;
-    transition: all 0.15s ease;
+    transition: width 0.15s ease, height 0.15s ease, border-color 0.15s ease;
 }
 
 body.cursor-hover .cursor-ring {
@@ -158,6 +273,15 @@ body.cursor-hover .cursor-dot {
     height: 100vh;
     padding: 10vh 8vw;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6vw;
+}
+
+.index-intro {
+    flex: 1;
+    min-width: 0;
 }
 
 .index-name h1 {
@@ -167,35 +291,36 @@ body.cursor-hover .cursor-dot {
 }
 
 .index-illustration {
-    position: absolute;
-    top: 8vh;
-    right: 0;
     width: clamp(180px, 22vw, 320px);
+    aspect-ratio: 1;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
     animation: fadeIn 0.8s 0.4s ease-out both;
 }
 
 .index-illustration img {
     width: 100%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(12%) sepia(8%);
 }
 
 .index-tagline {
-    position: absolute;
-    bottom: 10vh;
-    left: 8vw;
     font: 300 0.85rem/1.75 var(--font-body);
     color: var(--brown);
     max-width: 360px;
+    margin-top: 20px;
+    animation: fadeIn 0.8s 0.6s ease-out both;
 }
 
 .rust-dot {
-    position: absolute;
-    bottom: calc(10vh + 28px);
-    left: calc(8vw + 300px);
+    display: block;
     width: 7px;
     height: 7px;
     background: var(--rust);
     border-radius: 50%;
+    margin-top: 28px;
 }
 
 .index-scroll-hint {
@@ -257,13 +382,21 @@ body.cursor-hover .cursor-dot {
 
 .domain-slant {
     position: absolute;
-    top: -10%;
-    right: -2vw;
-    width: 4vw;
-    height: 120%;
+    top: 0;
+    height: 100%;
+    width: clamp(36px, 6vw, 90px);
     background: var(--ink);
-    transform: skewX(-12deg);
     z-index: 3;
+}
+
+.slant-right {
+    right: 0;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%);
+}
+
+.slant-left {
+    left: 0;
+    clip-path: polygon(0 0, 100% 0, 0 100%);
 }
 
 .domain-bg {
@@ -295,6 +428,11 @@ body.cursor-hover .cursor-dot {
 .domain-label {
     position: relative;
     z-index: 4;
+    transition: opacity 0.4s ease;
+}
+
+.domain-panel:not(.active) .domain-label {
+    opacity: 0.4;
 }
 
 .domain-label h2 {
@@ -313,6 +451,14 @@ body.cursor-hover .cursor-dot {
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 6vh;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.section-eyebrow.in-view {
+    opacity: 1;
+    transform: none;
 }
 
 #made {
@@ -326,6 +472,14 @@ body.cursor-hover .cursor-dot {
     gap: 48px;
     align-items: start;
     margin-bottom: 10vh;
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.project-card.in-view {
+    opacity: 1;
+    transform: none;
 }
 
 .project-card:nth-child(even) {
@@ -385,15 +539,57 @@ body.cursor-hover .cursor-dot {
     overflow: hidden;
     border-radius: 4px;
     border: 0.5px solid var(--stroke);
-    background: #f9f6f1;
-    display: grid;
-    place-items: center;
+    position: relative;
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
 }
 
-.project-image img {
-    width: 56%;
-    height: 56%;
-    object-fit: contain;
+.project-card:hover .project-image {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 28px rgba(28, 26, 22, 0.09);
+}
+
+.work-skeleton {
+    position: absolute;
+    inset: 0;
+    background-color: #f9f6f1;
+    background-image: radial-gradient(circle, var(--stroke) 1px, transparent 1px);
+    background-size: 18px 18px;
+}
+
+.work-blur {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: blur(7px) saturate(0.72) brightness(1.03);
+    transform: scale(1.06);
+}
+
+.work-real {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    mask: radial-gradient(circle var(--lens-r, 0px) at var(--lens-x, 50%) var(--lens-y, 50%), #000 99%, transparent 100%);
+    -webkit-mask: radial-gradient(circle var(--lens-r, 0px) at var(--lens-x, 50%) var(--lens-y, 50%), #000 99%, transparent 100%);
+}
+
+.project-image-cta {
+    position: absolute;
+    bottom: 10px;
+    right: 12px;
+    font: 0.6rem var(--font-mono);
+    color: var(--rust);
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    pointer-events: none;
+    z-index: 2;
+}
+
+.project-card:hover .project-image-cta {
+    opacity: 1;
 }
 
 #otherwise {
@@ -408,30 +604,38 @@ body.cursor-hover .cursor-dot {
 }
 
 .shelf {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(48px, 8vh, 90px);
+    margin-top: auto;
+    padding-bottom: 48px;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.shelf.in-view {
+    opacity: 1;
+    transform: none;
+}
+
+.shelf-row {
     position: relative;
     display: flex;
     align-items: flex-end;
+    justify-content: center;
     gap: clamp(16px, 3vw, 40px);
-    margin-top: auto;
-    padding-bottom: 48px;
+    padding-bottom: 28px;
 }
 
-.shelf-line {
+.shelf-row::after {
+    content: "";
     position: absolute;
-    bottom: 48px;
-    left: -10vw;
-    right: -10vw;
+    bottom: 0;
+    left: -5vw;
+    right: -5vw;
     height: 1px;
     background: var(--stroke);
-}
-
-.shelf-shadow {
-    position: absolute;
-    bottom: 38px;
-    left: 0;
-    right: 0;
-    height: 10px;
-    background: radial-gradient(ellipse at center, rgba(28, 26, 22, 0.07) 0%, transparent 70%);
 }
 
 .shelf-item {
@@ -458,16 +662,16 @@ body.cursor-hover .cursor-dot {
     width: clamp(60px, 8vw, 110px);
 }
 
-.shelf-item:nth-child(3) {
-    margin-bottom: 16px;
-}
-
-.shelf-item:nth-child(4) {
-    margin-bottom: 6px;
-}
-
-.shelf-item:nth-child(5) {
-    margin-bottom: 10px;
+.shelf-item::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 6px;
+    background: radial-gradient(ellipse at center, rgba(28, 26, 22, 0.08) 0%, transparent 70%);
+    pointer-events: none;
 }
 
 .shelf-item::after {
@@ -497,6 +701,17 @@ body.cursor-hover .cursor-dot {
     display: flex;
     align-items: center;
     padding: 0 10vw;
+}
+
+.find-content {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.find-content.in-view {
+    opacity: 1;
+    transform: none;
 }
 
 .find-headline {
@@ -549,6 +764,260 @@ body.cursor-hover .cursor-dot {
     animation: underlineIn 0.3s 0.15s ease forwards;
 }
 
+.find-colophon {
+    margin-top: 48px;
+    font: 0.65rem var(--font-mono);
+    color: var(--muted);
+    opacity: 0.6;
+    letter-spacing: 0.05em;
+}
+
+/* ── Domain tagline ──────────────────────────────────────── */
+
+.domain-tagline {
+    font: italic 300 0.78rem/1.6 var(--font-body);
+    color: var(--brown);
+    margin-top: 8px;
+    max-width: 320px;
+    opacity: 0.85;
+}
+
+/* ── Cursor lens mode ────────────────────────────────────── */
+
+body.cursor-lens .cursor-ring {
+    width: 140px;
+    height: 140px;
+    border-color: rgba(28, 26, 22, 0.25);
+}
+
+body.cursor-lens .cursor-dot {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* ── Work detail overlay ─────────────────────────────────── */
+
+#workOverlay {
+    position: fixed;
+    inset: 0;
+    z-index: 200;
+    background: var(--cream);
+    opacity: 0;
+    visibility: hidden;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+#workOverlay.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.work-back {
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 18px 24px;
+    background: transparent;
+    border: none;
+    font: 0.7rem var(--font-mono);
+    color: var(--brown);
+    cursor: none;
+    transition: color 0.2s;
+    margin: 0;
+}
+
+.work-back:hover {
+    color: var(--rust);
+}
+
+.work-back-arrow {
+    font-size: 1rem;
+    line-height: 1;
+    transition: transform 0.2s ease;
+}
+
+.work-back:hover .work-back-arrow {
+    transform: translateX(-4px);
+}
+
+.work-detail {
+    min-height: 100vh;
+}
+
+.work-detail[hidden] {
+    display: none;
+}
+
+.work-detail-inner {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 8vw 12vh;
+}
+
+.work-detail-hero {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    overflow: hidden;
+    border-radius: 6px;
+    border: 0.5px solid var(--stroke);
+    position: relative;
+    margin-bottom: 48px;
+}
+
+.work-detail-hero .work-skeleton {
+    position: absolute;
+    inset: 0;
+    background-color: #f9f6f1;
+    background-image: radial-gradient(circle, var(--stroke) 1px, transparent 1px);
+    background-size: 18px 18px;
+}
+
+.work-hero-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.work-detail-hook {
+    font: italic 300 clamp(1.1rem, 2.5vw, 1.5rem)/1.4 var(--font-display);
+    color: var(--rust);
+    margin-bottom: 10px;
+}
+
+.work-detail-title {
+    font: 300 clamp(2rem, 5vw, 3.5rem)/1.1 var(--font-display);
+    color: var(--ink);
+    margin-bottom: 20px;
+}
+
+.work-detail-stack {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    margin-bottom: 48px;
+    padding-bottom: 32px;
+    border-bottom: 0.5px solid var(--stroke);
+}
+
+.work-detail-stack span {
+    font: 0.65rem var(--font-mono);
+    color: var(--rust);
+    border: 0.5px solid var(--rust);
+    padding: 3px 10px;
+    border-radius: 2px;
+}
+
+.work-sections {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+.work-section h3 {
+    font: 0.68rem var(--font-mono);
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 10px;
+}
+
+.work-section p {
+    font: 300 0.9rem/1.8 var(--font-body);
+    color: var(--brown);
+    max-width: 640px;
+}
+
+/* ── TODO placeholders ───────────────────────────────────── */
+
+.todo {
+    font: italic 0.82rem var(--font-mono);
+    color: var(--muted);
+    opacity: 0.7;
+    border-bottom: 1px dashed var(--stroke);
+}
+
+.todo-inline {
+    font: 0.65rem var(--font-mono);
+    color: var(--muted);
+    opacity: 0.7;
+}
+
+.find-link-todo {
+    opacity: 0.5;
+}
+
+#pageWrapper.zooming {
+    will-change: transform;
+}
+
+/* ── Zoom surroundings fade ─────────────────────────────── */
+
+.zoom-faded {
+    transition: opacity 0.25s ease;
+}
+
+#pageWrapper.zoom-fade .zoom-faded {
+    opacity: 0;
+}
+
+#pageWrapper.zoom-fade-instant .zoom-faded {
+    transition: none;
+}
+
+#pageWrapper.zoom-fade .project-image-cta {
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+/* ── Detail intro: typewriter caret ─────────────────────── */
+
+.work-detail-hook.is-typing::after,
+.work-detail-title.is-typing::after {
+    content: "";
+    display: inline-block;
+    width: 2px;
+    height: 0.85em;
+    background: currentColor;
+    margin-left: 3px;
+    vertical-align: text-bottom;
+    animation: caretBlink 0.9s step-end infinite;
+}
+
+@keyframes caretBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+}
+
+/* ── Detail intro: cascade reveal of stack + sections ───── */
+
+.work-detail.playing-intro .work-detail-stack,
+.work-detail.playing-intro .work-section {
+    opacity: 0;
+    transform: translateY(16px);
+    transition: none;
+}
+
+.work-detail.playing-intro.intro-done .work-detail-stack,
+.work-detail.playing-intro.intro-done .work-section {
+    opacity: 1;
+    transform: none;
+    transition: opacity 0.5s ease, transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.work-detail.playing-intro.intro-done .work-detail-stack      { transition-delay: 0s;     }
+.work-detail.playing-intro.intro-done .work-section:nth-child(1) { transition-delay: 0.07s; }
+.work-detail.playing-intro.intro-done .work-section:nth-child(2) { transition-delay: 0.14s; }
+.work-detail.playing-intro.intro-done .work-section:nth-child(3) { transition-delay: 0.21s; }
+.work-detail.playing-intro.intro-done .work-section:nth-child(4) { transition-delay: 0.28s; }
+
 @keyframes underlineIn {
     to {
         transform: scaleX(1);
@@ -577,6 +1046,32 @@ body.cursor-hover .cursor-dot {
     }
 }
 
+@media (prefers-reduced-motion: reduce) {
+    .index-name h1,
+    .index-illustration {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+
+    .project-card,
+    .shelf,
+    .find-content,
+    .section-eyebrow {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+
+    #workOverlay {
+        transition: none !important;
+    }
+
+    html {
+        scroll-behavior: auto;
+    }
+}
+
 @media (max-width: 1024px) {
     .dot-nav {
         right: 14px;
@@ -597,27 +1092,28 @@ body.cursor-hover .cursor-dot {
     .project-card:nth-child(even) .project-image {
         order: initial;
     }
+
 }
 
 @media (max-width: 768px) {
     .index-layout {
         padding: 8vh 7vw;
+        flex-direction: column;
+        justify-content: center;
+        gap: 28px;
     }
 
     .index-illustration {
-        width: 170px;
-        opacity: 0.8;
+        width: 150px;
+        opacity: 0.85;
     }
 
     .index-tagline {
-        left: 7vw;
-        right: 7vw;
         max-width: 100%;
     }
 
-    .rust-dot {
-        left: 7vw;
-        bottom: calc(10vh + 68px);
+    .work-blur {
+        display: none;
     }
 
     .shelf {
@@ -629,13 +1125,294 @@ body.cursor-hover .cursor-dot {
     }
 }
 
+@media (max-width: 380px) {
+    .index-illustration {
+        width: 100px;
+    }
+}
+
 @media (pointer: coarse) {
     * {
+        cursor: auto;
+    }
+
+    a,
+    button {
         cursor: auto;
     }
 
     .cursor-dot,
     .cursor-ring {
         display: none;
+    }
+
+    .shelf-item::after {
+        opacity: 0.75;
+    }
+
+    .project-card {
+        cursor: pointer;
+    }
+
+    .work-back {
+        cursor: pointer;
+    }
+
+    .work-real {
+        mask: none !important;
+        -webkit-mask: none !important;
+    }
+
+    .work-skeleton {
+        display: none;
+    }
+}
+
+/* ============================================================
+   WORK DETAIL — n8n figure
+   ============================================================ */
+
+.work-figure {
+    margin: 28px 0;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 0.5px solid var(--stroke);
+}
+
+.work-figure img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.work-figure figcaption {
+    font: 0.68rem var(--font-mono);
+    color: var(--muted);
+    padding: 8px 12px;
+    border-top: 0.5px solid var(--stroke);
+}
+
+/* ============================================================
+   SELECTED WORK — Workshop entry
+   ============================================================ */
+
+.workshop-entry {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    padding: 40px 0 8px;
+    border-top: 0.5px solid var(--stroke);
+    margin-top: 16px;
+}
+
+.workshop-link {
+    font: 400 clamp(1rem, 2vw, 1.25rem)/1.2 var(--font-display);
+    color: var(--ink);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.workshop-link:hover {
+    color: var(--rust);
+}
+
+.workshop-entry-sub {
+    font: 0.68rem var(--font-mono);
+    color: var(--muted);
+    letter-spacing: 0.03em;
+}
+
+/* ============================================================
+   THE WORKSHOP — gallery page
+   ============================================================ */
+
+.gallery-page {
+    background: var(--paper);
+    min-height: 100vh;
+    color: var(--ink);
+}
+
+.gallery-back {
+    position: fixed;
+    top: 28px;
+    left: 32px;
+    font: 0.7rem var(--font-mono);
+    color: var(--muted);
+    text-decoration: none;
+    z-index: 100;
+    transition: color 0.2s ease;
+}
+
+.gallery-back:hover {
+    color: var(--rust);
+}
+
+.gallery-main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 100px 40px 80px;
+}
+
+.gallery-header {
+    margin-bottom: 72px;
+}
+
+.gallery-header .section-eyebrow {
+    margin-bottom: 12px;
+}
+
+.gallery-title {
+    font: 300 clamp(2.4rem, 6vw, 4rem)/1.05 var(--font-display);
+    margin: 0 0 14px;
+}
+
+.gallery-subtitle {
+    font: 300 0.88rem/1.65 var(--font-body);
+    color: var(--muted);
+    max-width: 460px;
+}
+
+.gallery-section {
+    margin-bottom: 72px;
+}
+
+.gallery-section-title {
+    font: 400 0.72rem/1 var(--font-mono);
+    color: var(--rust);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin: 0 0 24px;
+    padding-bottom: 12px;
+    border-bottom: 0.5px solid var(--stroke);
+}
+
+.workshop-grid {
+    columns: 3;
+    column-gap: 16px;
+}
+
+.gallery-tile {
+    break-inside: avoid;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 4px;
+    border: 0.5px solid var(--stroke);
+    cursor: pointer;
+    transition: box-shadow 0.22s ease;
+}
+
+.gallery-tile:hover {
+    box-shadow: 0 6px 24px rgba(28, 26, 22, 0.08);
+}
+
+.gallery-tile img,
+.gallery-tile video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.gallery-tile-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 8px 12px;
+    font: 0.65rem var(--font-mono);
+    color: var(--ink);
+    background: rgba(249, 246, 241, 0.88);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    border-top: 0.5px solid var(--stroke);
+}
+
+.gallery-tile:hover .gallery-tile-caption {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-section-intro {
+    font: 300 0.82rem/1.65 var(--font-body);
+    color: var(--muted);
+    margin: -12px 0 20px;
+}
+
+
+/* Lightbox */
+.gallery-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(28, 26, 22, 0.92);
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+}
+
+.gallery-lightbox.open {
+    opacity: 1;
+    visibility: visible;
+}
+
+.gallery-lightbox-inner {
+    position: relative;
+    max-width: 90vw;
+    max-height: 88vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gallery-lightbox-inner img,
+.gallery-lightbox-inner video {
+    max-width: 100%;
+    max-height: 88vh;
+    object-fit: contain;
+    border-radius: 4px;
+    display: block;
+}
+
+.gallery-lightbox-close {
+    position: fixed;
+    top: 24px;
+    right: 28px;
+    background: none;
+    border: none;
+    color: rgba(249, 246, 241, 0.7);
+    font: 0.8rem var(--font-mono);
+    cursor: pointer;
+    padding: 8px;
+    transition: color 0.2s ease;
+}
+
+.gallery-lightbox-close:hover {
+    color: #f9f6f1;
+}
+
+@media (max-width: 600px) {
+    .gallery-main {
+        padding: 80px 20px 60px;
+    }
+
+    .workshop-grid {
+        columns: 2;
+        column-gap: 10px;
+    }
+
+    .gallery-tile {
+        margin-bottom: 10px;
+    }
+
+    .gallery-back {
+        left: 20px;
     }
 }
