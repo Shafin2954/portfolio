@@ -553,52 +553,6 @@ function restoreScroll() {
     updateDotProgress();
 }
 
-function setupDomainsTouchScroll() {
-    if (!domainsSection || !domainsWrapper || !pageWrapper || domainPanels.length < 2) return;
-
-    let startX = 0, startY = 0, lastX = 0;
-    let axis = null; // 'h' | 'v' | null (undecided)
-    let scrollable = 1, domainStart = 0, multiplier = 1;
-
-    domainsSection.addEventListener("touchstart", e => {
-        if (e.touches.length !== 1) { axis = "v"; return; } // ignore pinch
-        const t = e.touches[0];
-        startX = lastX = t.clientX;
-        startY = t.clientY;
-        axis = null;
-
-        // Cache gesture constants: stable while the section is pinned
-        scrollable = Math.max(1, domainsWrapper.offsetHeight - pageWrapper.clientHeight);
-        domainStart = pageWrapper.scrollTop + domainsWrapper.getBoundingClientRect().top;
-        // One full-screen width swipe == one panel transition
-        const W = Math.max(1, window.innerWidth);
-        multiplier = scrollable / ((domainPanels.length - 1) * W);
-    }, { passive: true });
-
-    domainsSection.addEventListener("touchmove", e => {
-        if (e.touches.length !== 1) return;
-        const t = e.touches[0];
-        const dx = t.clientX - startX;
-        const dy = t.clientY - startY;
-        const moveDx = t.clientX - lastX;
-        lastX = t.clientX;
-
-        // Lock axis once movement clears threshold
-        if (!axis && (Math.abs(dx) > 8 || Math.abs(dy) > 8)) {
-            axis = Math.abs(dx) >= Math.abs(dy) ? "h" : "v";
-        }
-        if (axis !== "h") return; // vertical drag: don't intervene
-
-        e.preventDefault();
-        const next = clamp(
-            pageWrapper.scrollTop - moveDx * multiplier,
-            domainStart,
-            domainStart + scrollable
-        );
-        pageWrapper.scrollTop = next;
-    }, { passive: false });
-}
-
 function init() {
     setupDotNavigation();
     setupCursor();
@@ -608,7 +562,6 @@ function init() {
     setupScrollSync();
     setupResizeHandling();
     setupScrollSave();
-    setupDomainsTouchScroll();
     applyVideoRatios();
 
     restoreScroll();
