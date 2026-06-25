@@ -252,6 +252,8 @@ function setupWorkDetail() {
 
         if (!hook.dataset.full) hook.dataset.full = hook.textContent;
         if (!title.dataset.full) title.dataset.full = title.textContent;
+        hook.textContent = "";
+        title.textContent = "";
 
         let cancelled = false;
         const timers = [];
