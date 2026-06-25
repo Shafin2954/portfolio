@@ -6,14 +6,12 @@ const domainsWrapper = document.getElementById("domainsWrapper");
 const domainsSection = document.getElementById("domains");
 const domainsTrack = document.getElementById("domainsTrack");
 const domainPanels = domainsTrack ? Array.from(domainsTrack.querySelectorAll(".domain-panel")) : [];
-const domainBgLayers = domainsTrack ? Array.from(domainsTrack.querySelectorAll(".domain-bg")) : [];
 const domainIllusLayers = domainsTrack ? Array.from(domainsTrack.querySelectorAll(".domain-illus")) : [];
 
 const indexScrollHint = document.getElementById("indexScrollHint");
 
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
-let currentX = 0;
 let mouseDriftY = 0;
 
 function clamp(value, min, max) {
@@ -77,20 +75,47 @@ function updateDomainsScroll() {
     const scrolled = clamp(-rect.top, 0, scrollable);
     const progress = scrolled / scrollable;
 
-    const maxX = Math.max(0, (domainPanels.length - 1) * window.innerWidth);
-    currentX = progress * maxX;
-    domainsTrack.style.transform = `translateX(-${currentX}px)`;
-
+    // Vertical mouse-drift on illustrations (panels are now static)
     if (!prefersReducedMotion) {
-        domainBgLayers.forEach(layer => {
-            layer.style.transform = `translateX(${currentX * 0.35}px)`;
-        });
-
         domainIllusLayers.forEach(layer => {
-            layer.style.transform = `translateX(${currentX * 0.35}px) translateY(${mouseDriftY}px)`;
+            layer.style.transform = `translate(-50%, calc(-50% + ${mouseDriftY}px))`;
         });
     }
 
+    // Diagonal clip-path reveal: each incoming panel sweeps leftward over the previous one
+    const n = domainPanels.length;
+    const seg = 1 / (n - 1); // fraction of progress per transition
+    const W = window.innerWidth;
+    const slantPx = clamp(36, 0.06 * W, 90); // diagonal's horizontal run
+    const edgePx  = clamp(24, 0.035 * W, 56); // ink edge band thickness
+
+    domainPanels.forEach((panel, i) => {
+        if (i === 0) {
+            // Base panel — always fully visible, no clip
+            panel.style.clipPath = "none";
+            return;
+        }
+
+        // Local progress [0,1] for this panel's own transition window
+        const lp = clamp((progress - (i - 1) * seg) / seg, 0, 1);
+
+        // Line X position: starts at right edge (lp=0), sweeps to left edge (lp=1)
+        const baseX = (W + slantPx / 2) - lp * (W + slantPx);
+        const Tx = baseX + slantPx / 2; // top of diagonal
+        const Bx = baseX - slantPx / 2; // bottom of diagonal
+
+        // Reveal the panel to the right of the diagonal line
+        panel.style.clipPath = `polygon(${Tx}px 0%, 100% 0%, 100% 100%, ${Bx}px 100%)`;
+
+        // Drive the ink limiting line (visible only mid-transition)
+        const edge = panel.querySelector(".domain-edge");
+        if (edge) {
+            edge.style.clipPath = `polygon(${Tx}px 0%, ${Tx + edgePx}px 0%, ${Bx + edgePx}px 100%, ${Bx}px 100%)`;
+            edge.style.opacity = (lp > 0 && lp < 1) ? "1" : "0";
+        }
+    });
+
+    // Keep .active on the nearest panel for label dimming
     const activePanelIndex = Math.round(progress * (domainPanels.length - 1));
     domainPanels.forEach((panel, index) => {
         panel.classList.toggle("active", index === activePanelIndex);
@@ -174,33 +199,6 @@ function setupCursor() {
     });
 }
 
-function setupDomainHint() {
-    if (!domainsWrapper || !domainsTrack || prefersReducedMotion) return;
-
-    let hintPlayed = false;
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (!entry.isIntersecting || hintPlayed) return;
-            hintPlayed = true;
-
-            const startX = currentX;
-            domainsTrack.style.transition = "transform 0.15s ease-out";
-            domainsTrack.style.transform = `translateX(-${startX + 60}px)`;
-            setTimeout(() => {
-                domainsTrack.style.transition = "transform 0.3s ease-in-out";
-                domainsTrack.style.transform = `translateX(-${startX}px)`;
-                setTimeout(() => {
-                    domainsTrack.style.transition = "";
-                }, 300);
-            }, 150);
-        });
-    }, {
-        root: pageWrapper,
-        threshold: 0.25
-    });
-
-    observer.observe(domainsWrapper);
-}
 
 function setupDomainParallax() {
     if (!domainsSection || prefersReducedMotion) return;
@@ -545,7 +543,9 @@ function restoreScroll() {
     const saved = sessionStorage.getItem("portfolioScroll");
     if (!saved || !pageWrapper) return;
     sessionStorage.removeItem("portfolioScroll");
+    pageWrapper.style.scrollBehavior = "auto";
     pageWrapper.scrollTop = parseFloat(saved);
+    pageWrapper.style.scrollBehavior = "";
     updateDomainsScroll();
     updateActiveSectionState();
     updateDotProgress();
@@ -554,7 +554,6 @@ function restoreScroll() {
 function init() {
     setupDotNavigation();
     setupCursor();
-    setupDomainHint();
     setupDomainParallax();
     setupWorkDetail();
     setupScrollReveal();
