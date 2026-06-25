@@ -1172,6 +1172,49 @@ body.cursor-lens .cursor-dot {
     .work-skeleton {
         display: none;
     }
+
+    /* ── No-lens layout: title/meta/tags flow outside the media ── */
+
+    /* Ensure image comes before text for all cards (incl. even override) */
+    .project-card .project-image { order: 1; }
+    .project-card .project-text  { order: 2; }
+
+    /* Unwrap the bordered media box so cover + video stack vertically */
+    .project-image {
+        aspect-ratio: auto;
+        overflow: visible;
+        border: none;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .project-card:hover .project-image {
+        transform: none;
+        box-shadow: none;
+    }
+
+    /* Video: static flow, gets its own border */
+    .work-real {
+        position: static;
+        order: -1;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 4 / 3;
+        border: 0.5px solid var(--stroke);
+        border-radius: 4px;
+    }
+
+    /* Cover becomes a plain text block below the video */
+    .project-cover {
+        position: static;
+        inset: auto;
+        background: none;
+        z-index: auto;
+        justify-content: flex-start;
+        padding: 14px 2px 0;
+    }
+
+    .project-image-cta { display: none; }
 }
 
 /* ============================================================
