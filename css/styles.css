@@ -1,11 +1,11 @@
-/* TODO: --rust is no longer rust (now oxblood). Rename the variable to
+/* TODO: --oxblood is no longer rust (now oxblood). Rename the variable to
    something palette-neutral (e.g. --accent) everywhere it's used across
    styles.css before finalizing. Defer until the palette is locked. */
 :root {
     --cream: #f5f0e8;
     --paper: #ede8dc;
     --ink: #1c1a16;
-    --rust: #8c2f2f;
+    --oxblood: #8c2f2f;
     --brown: #8b7355;
     --muted: #a09888;
     --stroke: #d4c9b5;
@@ -18,7 +18,7 @@
 /* ============================================================
    PALETTE LAB — uncomment ONE block to preview it.
    Each block overrides only the color vars (fonts/scroll stay).
-   The accent (--rust) + secondary text (--brown) pairing is what
+   The accent (--oxblood) + secondary text (--brown) pairing is what
    moves the design away from the Claude/Notion editorial look.
    ============================================================ */
 
@@ -28,7 +28,7 @@
     --cream: #f4f2ea;
     --paper: #e8e4d6;
     --ink: #18201b;
-    --rust: #2f6b4f;
+    --oxblood: #2f6b4f;
     --brown: #5c6b5a;
     --muted: #97a092;
     --stroke: #cdc9b8;
@@ -41,7 +41,7 @@
     --cream: #f4f4f1;
     --paper: #e7e8e2;
     --ink: #17181c;
-    --rust: #2b4ea0;
+    --oxblood: #2b4ea0;
     --brown: #59616f;
     --muted: #9398a3;
     --stroke: #d0cfc8;
@@ -54,7 +54,7 @@
     --cream: #f3f1ec;
     --paper: #e7e2d8;
     --ink: #1c1a18;
-    --rust: #8c2f2f;
+    --oxblood: #8c2f2f;
     --brown: #6e655c;
     --muted: #a39a8e;
     --stroke: #d2cabb;
@@ -67,7 +67,7 @@
     --cream: #f4f2ea;
     --paper: #e8e3d6;
     --ink: #15201f;
-    --rust: #1f7a72;
+    --oxblood: #1f7a72;
     --brown: #5f6b66;
     --muted: #9aa19c;
     --stroke: #cdc8ba;
@@ -80,7 +80,7 @@
     --cream: #f5f2ec;
     --paper: #eae3da;
     --ink: #1f1a1d;
-    --rust: #6d3b6e;
+    --oxblood: #6d3b6e;
     --brown: #6b5d66;
     --muted: #a298a0;
     --stroke: #d4ccc6;
@@ -93,7 +93,7 @@
     --cream: #f5f1e6;
     --paper: #ece5d2;
     --ink: #1c1a14;
-    --rust: #bb8420;
+    --oxblood: #bb8420;
     --brown: #6b6048;
     --muted: #a39a82;
     --stroke: #d6cdb6;
@@ -130,7 +130,7 @@ button {
 }
 
 :focus-visible {
-    outline: 2px solid var(--rust);
+    outline: 2px solid var(--oxblood);
     outline-offset: 3px;
     border-radius: 2px;
 }
@@ -180,7 +180,7 @@ button {
 .dot-nav::after {
     top: 6px;
     bottom: 6px;
-    background: var(--rust);
+    background: var(--oxblood);
     transform: translateX(-50%) scaleY(var(--scroll-progress));
     transform-origin: top;
 }
@@ -206,7 +206,7 @@ button {
 }
 
 .dot.active {
-    background: var(--rust);
+    background: var(--oxblood);
     transform: scale(1.4);
 }
 
@@ -217,7 +217,7 @@ button {
     top: 50%;
     transform: translateY(-50%);
     font: 0.65rem var(--font-mono);
-    color: var(--rust);
+    color: var(--oxblood);
     white-space: nowrap;
     opacity: 0;
     transition: opacity 0.2s;
@@ -261,7 +261,7 @@ body.cursor-hover .cursor-ring {
 body.cursor-hover .cursor-dot {
     width: 5px;
     height: 5px;
-    background: var(--rust);
+    background: var(--oxblood);
 }
 
 #index {
@@ -318,7 +318,7 @@ body.cursor-hover .cursor-dot {
     display: block;
     width: 7px;
     height: 7px;
-    background: var(--rust);
+    background: var(--oxblood);
     border-radius: 50%;
     margin-top: 28px;
 }
@@ -435,7 +435,7 @@ body.cursor-hover .cursor-dot {
 
 .section-eyebrow {
     font: 0.7rem var(--font-mono);
-    color: var(--rust);
+    color: var(--oxblood);
     letter-spacing: 0.1em;
     text-transform: uppercase;
     margin-bottom: 6vh;
@@ -494,7 +494,7 @@ body.cursor-hover .cursor-dot {
 
 .project-meta {
     font: 0.7rem var(--font-mono);
-    color: var(--rust);
+    color: var(--oxblood);
     display: block;
     margin-bottom: 10px;
 }
@@ -524,8 +524,8 @@ body.cursor-hover .cursor-dot {
 
 .project-tags span {
     font: 0.65rem var(--font-mono);
-    color: var(--rust);
-    border: 0.5px solid var(--rust);
+    color: var(--oxblood);
+    border: 0.5px solid var(--oxblood);
     padding: 2px 8px;
     border-radius: 2px;
 }
@@ -586,7 +586,7 @@ body.cursor-hover .cursor-dot {
     bottom: 10px;
     right: 12px;
     font: 0.6rem var(--font-mono);
-    color: var(--rust);
+    color: var(--oxblood);
     opacity: 0;
     transition: opacity 0.2s ease;
     pointer-events: none;
@@ -732,7 +732,7 @@ body.cursor-hover .cursor-dot {
 
 .find-link {
     font: 300 0.9rem var(--font-body);
-    color: var(--rust);
+    color: var(--oxblood);
     text-decoration: none;
     position: relative;
     padding-bottom: 2px;
@@ -745,7 +745,7 @@ body.cursor-hover .cursor-dot {
     left: 0;
     width: 100%;
     height: 1px;
-    background: var(--rust);
+    background: var(--oxblood);
     transform: scaleX(1);
     transform-origin: left;
     transition: transform 0.3s ease;
@@ -763,7 +763,7 @@ body.cursor-hover .cursor-dot {
     left: 0;
     width: 100%;
     height: 1px;
-    background: var(--rust);
+    background: var(--oxblood);
     transform: scaleX(0);
     transform-origin: left;
     animation: underlineIn 0.3s 0.15s ease forwards;
@@ -838,7 +838,7 @@ body.cursor-lens .cursor-dot {
 }
 
 .work-back:hover {
-    color: var(--rust);
+    color: var(--oxblood);
 }
 
 .work-back-arrow {
@@ -893,7 +893,7 @@ body.cursor-lens .cursor-dot {
 
 .work-detail-hook {
     font: italic 300 clamp(1.1rem, 2.5vw, 1.5rem)/1.4 var(--font-display);
-    color: var(--rust);
+    color: var(--oxblood);
     margin-bottom: 10px;
 }
 
@@ -914,8 +914,8 @@ body.cursor-lens .cursor-dot {
 
 .work-detail-stack span {
     font: 0.65rem var(--font-mono);
-    color: var(--rust);
-    border: 0.5px solid var(--rust);
+    color: var(--oxblood);
+    border: 0.5px solid var(--oxblood);
     padding: 3px 10px;
     border-radius: 2px;
 }
@@ -1262,7 +1262,7 @@ body.cursor-lens .cursor-dot {
 }
 
 .workshop-link:hover {
-    color: var(--rust);
+    color: var(--oxblood);
 }
 
 .workshop-entry-sub {
@@ -1293,7 +1293,7 @@ body.cursor-lens .cursor-dot {
 }
 
 .gallery-back:hover {
-    color: var(--rust);
+    color: var(--oxblood);
 }
 
 .gallery-main {
@@ -1327,7 +1327,7 @@ body.cursor-lens .cursor-dot {
 
 .gallery-section-title {
     font: 400 0.72rem/1 var(--font-mono);
-    color: var(--rust);
+    color: var(--oxblood);
     text-transform: uppercase;
     letter-spacing: 0.08em;
     margin: 0 0 24px;
